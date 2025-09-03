@@ -241,7 +241,7 @@
         
         /* Fő tartalom */
         .content-section {
-            display: none; /* Alapból elrejtjük a kategória tartalmakat */
+            display: none;
             padding: 20px;
             max-width: 1200px;
             margin: 20px auto;
@@ -251,7 +251,7 @@
         }
 
         .content-section.active {
-            display: block; /* A kiválasztott szekciót megjelenítjük */
+            display: block;
         }
         
         .car-card {
@@ -447,6 +447,7 @@
             <a href="#" class="nav-link" data-target="prices-section" id="pricesLink" data-key="prices_title">Part Prices</a>
             <a href="#" class="nav-link" data-target="costs-section" id="costsLink" data-key="costs_title">Maintenance Costs</a>
             <a href="#" class="nav-link" data-target="reviews-section" id="reviewsLink" data-key="reviews_title">Owner Reviews</a>
+            <a href="#" class="nav-link" data-target="search-results-section" id="searchResultsLink" style="display:none;"></a>
         </nav>
     </header>
 
@@ -503,6 +504,14 @@
         </main>
     </div>
 
+    <div class="content-section" id="search-results-section">
+        <main>
+            <h2 data-key="search_results_title">Search Results</h2>
+            <div id="searchResultsContainer">
+                </div>
+        </main>
+    </div>
+
     <div id="registrationModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -550,8 +559,12 @@
         const currentLangFlag = document.getElementById("currentLangFlag");
         const navLinks = document.querySelectorAll('.main-nav .nav-link');
         const contentSections = document.querySelectorAll('.content-section');
+        const searchInput = document.getElementById("searchInput");
+        const searchButton = document.getElementById("searchButton");
+        const searchResultsContainer = document.getElementById("searchResultsContainer");
 
         let allTranslations;
+        let allCarsData;
 
         const languageFlags = {
             'en': '🇬🇧',
@@ -577,13 +590,11 @@
                 if (currentTranslations[key]) {
                     if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
                         element.setAttribute('placeholder', currentTranslations[key]);
-                    } else if (element.tagName === 'BUTTON' && element.id !== 'searchButton') {
+                    } else if (element.tagName === 'BUTTON') {
                         element.textContent = currentTranslations[key];
                     } else if (element.tagName === 'LABEL' && element.hasAttribute('for')) {
                         element.innerHTML = currentTranslations[key];
-                    } else if (element.tagName === 'H2' || element.tagName === 'P' || element.tagName === 'H1') {
-                        element.textContent = currentTranslations[key];
-                    } else if (element.tagName === 'A') {
+                    } else {
                         element.textContent = currentTranslations[key];
                     }
                 }
@@ -598,23 +609,75 @@
             window.loginComingSoonAlert = currentTranslations.alert_login_coming_soon;
         }
 
-        // Oldal inicializálása
-        async function initialize() {
+        // Adatbázis betöltése
+        async function loadData() {
             try {
-                const response = await fetch('text-content.json');
-                allTranslations = await response.json();
+                const textResponse = await fetch('text-content.json');
+                allTranslations = await textResponse.json();
                 
+                const carsResponse = await fetch('cars.json');
+                allCarsData = await carsResponse.json();
+                console.log("Adatbázisok sikeresen betöltve.");
+
                 const savedLanguage = localStorage.getItem('userLanguage') || 'en';
                 setLanguage(savedLanguage);
                 checkLoginStatus();
             } catch (error) {
-                console.error('Failed to load translations:', error);
+                console.error('Hiba az adatok betöltésekor:', error);
             }
         }
         
-        document.addEventListener('DOMContentLoaded', initialize);
+        // Keresőfunkció
+        function searchCars(query) {
+            if (!allCarsData) {
+                console.error("Autó adatbázis még nem töltődött be.");
+                return;
+            }
+            const currentLang = localStorage.getItem('userLanguage') || 'en';
+            const lowerCaseQuery = query.toLowerCase();
 
-        // Kategória váltás logikája
+            const results = allCarsData.filter(car => 
+                car.brand.toLowerCase().includes(lowerCaseQuery) || 
+                car.model.toLowerCase().includes(lowerCaseQuery)
+            );
+            
+            displayResults(results, currentLang);
+        }
+
+        function displayResults(results, lang) {
+            searchResultsContainer.innerHTML = ''; // Eredmények törlése
+            
+            if (results.length === 0) {
+                const noResultsMessage = document.createElement('p');
+                noResultsMessage.style.textAlign = 'center';
+                if (lang === 'hu') {
+                    noResultsMessage.textContent = 'Nincs találat a keresésre.';
+                } else if (lang === 'de') {
+                    noResultsMessage.textContent = 'Keine Ergebnisse gefunden.';
+                } else if (lang === 'ro') {
+                    noResultsMessage.textContent = 'Niciun rezultat găsit.';
+                } else if (lang === 'pl') {
+                    noResultsMessage.textContent = 'Nie znaleziono wyników.';
+                } else {
+                    noResultsMessage.textContent = 'No results found.';
+                }
+                searchResultsContainer.appendChild(noResultsMessage);
+                return;
+            }
+
+            results.forEach(car => {
+                const carCard = document.createElement('div');
+                carCard.classList.add('car-card');
+                carCard.innerHTML = `
+                    <h3>${car.brand} ${car.model} (${car.year})</h3>
+                    <p><strong>${allTranslations[lang].issues_title}:</strong> ${car.common_issues.map(issue => issue.issue[lang]).join(', ')}</p>
+                    <p><strong>${allTranslations[lang].prices_title}:</strong> ${car.parts_prices.clutch_kit.name[lang]}: ${car.parts_prices.clutch_kit.price} Ft</p>
+                `;
+                searchResultsContainer.appendChild(carCard);
+            });
+        }
+
+        // Navigáció kezelése
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -633,6 +696,21 @@
                 const selectedLang = event.target.getAttribute('data-lang');
                 setLanguage(selectedLang);
                 event.preventDefault();
+            }
+        });
+
+        // Keresőgomb és Enter eseményfigyelők
+        searchButton.addEventListener('click', () => {
+            searchCars(searchInput.value);
+            document.getElementById('search-results-section').classList.add('active');
+            document.getElementById('home-section').classList.remove('active');
+        });
+
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                searchCars(searchInput.value);
+                document.getElementById('search-results-section').classList.add('active');
+                document.getElementById('home-section').classList.remove('active');
             }
         });
 
