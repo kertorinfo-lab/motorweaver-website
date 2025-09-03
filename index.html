@@ -267,6 +267,10 @@
             color: #2c3e50;
         }
         
+        .car-card h4 {
+            margin-top: 0;
+        }
+        
         .car-card hr {
             margin: 15px 0;
             border-color: #eee;
@@ -275,6 +279,7 @@
         .car-card ul {
             list-style-type: none;
             padding-left: 0;
+            margin-bottom: 0;
         }
         
         .car-card li {
@@ -693,7 +698,7 @@
             displayAllCarData(results, currentLang);
         }
 
-        // Az összes kategória adatainak megjelenítése
+        // Az adatok megjelenítése kategóriákra bontva
         function displayAllCarData(results, lang) {
             searchResultsContainer.innerHTML = '';
             
@@ -704,43 +709,49 @@
             
             results.forEach(car => {
                 const contentHTML = `
-                    <div class="car-card">
-                        <h3>${car.brand} ${car.model} (${car.year})</h3>
-                        <hr>
-                        
-                        <h4>${allTranslations[lang].issues_title} 🔧</h4>
-                        <ul>
-                            ${car.common_issues.map(issue => `
-                                <li>
-                                    <strong>${issue.issue[lang]}</strong>: ${issue.description[lang]}
-                                </li>
-                            `).join('')}
-                        </ul>
-                        <hr>
-                        
-                        <h4>${allTranslations[lang].prices_title} 💰</h4>
-                        <ul>
-                            ${Object.values(car.parts_prices).map(part => `
-                                <li><strong>${part.name[lang]}:</strong> ${part.price} Ft</li>
-                            `).join('')}
-                        </ul>
-                        <hr>
-                        
-                        <h4>${allTranslations[lang].costs_title} 📊</h4>
-                        <ul>
-                            ${car.maintenance_costs.map(cost => `
-                                <li><strong>${cost.task[lang]}:</strong> ${cost.cost} Ft</li>
-                            `).join('')}
-                        </ul>
-                        <hr>
-                        
-                        <h4>${allTranslations[lang].reviews_title} ⭐</h4>
-                        <ul>
-                            ${car.owner_reviews.map(review => `
-                                <li><strong>${allTranslations[lang].reviews_title.split(' ')[0]}:</strong> ${review.rating} / 5 <br>
-                                <strong>${allTranslations[lang].reviews_title.split(' ')[1] || 'Review'}:</strong> ${review.review[lang]}</li>
-                            `).join('')}
-                        </ul>
+                    <div class="car-result-container">
+                        <h3 style="text-align: center; font-size: 1.8em; margin-bottom: 20px;">${car.brand} ${car.model} (${car.year})</h3>
+
+                        <div class="car-card">
+                            <h4>${allTranslations[lang].issues_title} 🔧</h4>
+                            <ul>
+                                ${car.common_issues.map(issue => `
+                                    <li>
+                                        <strong>${issue.issue[lang]}</strong>: ${issue.description[lang]}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="car-card">
+                            <h4>${allTranslations[lang].prices_title} 💰</h4>
+                            <ul>
+                                ${Object.values(car.parts_prices).map(part => `
+                                    <li><strong>${part.name[lang]}:</strong> ${part.price} Ft</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="car-card">
+                            <h4>${allTranslations[lang].costs_title} 📊</h4>
+                            <ul>
+                                ${car.maintenance_costs.map(cost => `
+                                    <li><strong>${cost.task[lang]}:</strong> ${cost.cost} Ft</li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <div class="car-card">
+                            <h4>${allTranslations[lang].reviews_title} ⭐</h4>
+                            <ul>
+                                ${car.owner_reviews.map(review => `
+                                    <li>
+                                        <strong>${allTranslations[lang].reviews_title.split(' ')[0]}:</strong> ${review.rating} / 5 <br>
+                                        <strong>${allTranslations[lang].reviews_title.split(' ')[1] || 'Review'}:</strong> ${review.review[lang]}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
                     </div>
                 `;
                 searchResultsContainer.innerHTML += contentHTML;
