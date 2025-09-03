@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Base settings */
+        /* Alapbeállítások */
         body {
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
@@ -17,7 +17,7 @@
             color: #333;
         }
 
-        /* Header */
+        /* Fejléc */
         .header {
             background-color: #1a1a1a;
             color: #ecf0f1;
@@ -44,7 +44,6 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
-        /* NEW: Header right container */
         .header-right {
             display: flex;
             align-items: center;
@@ -169,9 +168,9 @@
             background-color: #2c3e50;
         }
 
-        /* Hero section - car image */
+        /* Hero szekció - autós kép */
         .hero-section {
-            width: 100%;
+            width: 0%;
             height: 400px;
             background-image: url('https://images.unsplash.com/photo-1542362543-0a78601639d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDIyfHxjYXJ8ZW58MHx8fHwxNjk5MjU0ODgw&ixlib=rb-4.0.3&q=80&q=80&w=1080');
             background-size: cover;
@@ -194,7 +193,7 @@
             font-size: 1.2em;
         }
 
-        /* Search and Category section */
+        /* Kereső és Kategória szekció */
         .search-section {
             padding: 50px 20px;
             text-align: center;
@@ -240,7 +239,7 @@
             background-color: #45a049;
         }
 
-        /* Main content */
+        /* Fő tartalom */
         main {
             padding: 20px;
             max-width: 1200px;
@@ -250,7 +249,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* Modal Window Styles */
+        /* Modális ablak stílusok */
         .modal {
             display: none;
             position: fixed;
@@ -355,13 +354,13 @@
             background-color: #45a049;
         }
 
-        /* Animation for the modal */
+        /* Animáció a modális ablakhoz */
         @keyframes animatetop {
             from { top: -300px; opacity: 0 }
             to { top: 0; opacity: 1 }
         }
 
-        /* Responsive design */
+        /* Reszponzív design */
         @media (max-width: 768px) {
             .header-top {
                 flex-direction: column;
@@ -425,11 +424,11 @@
             </div>
         </div>
         <nav class="main-nav">
-            <a href="#" class="nav-link" id="homeLink" data-key="home_link">Home</a>
-            <a href="#" class="nav-link" id="issuesLink" data-key="issues_title">Common Issues</a>
-            <a href="#" class="nav-link" id="pricesLink" data-key="prices_title">Part Prices</a>
-            <a href="#" class="nav-link" id="costsLink" data-key="costs_title">Maintenance Costs</a>
-            <a href="#" class="nav-link" id="reviewsLink" data-key="reviews_title">Owner Reviews</a>
+            <a href="index.html" class="nav-link" id="homeLink" data-key="home_link">Home</a>
+            <a href="issues.html" class="nav-link" id="issuesLink" data-key="issues_title">Common Issues</a>
+            <a href="prices.html" class="nav-link" id="pricesLink" data-key="prices_title">Part Prices</a>
+            <a href="costs.html" class="nav-link" id="costsLink" data-key="costs_title">Maintenance Costs</a>
+            <a href="reviews.html" class="nav-link" id="reviewsLink" data-key="reviews_title">Owner Reviews</a>
         </nav>
     </header>
 
@@ -493,7 +492,7 @@
     </div>
     
     <script>
-        // Get modal and buttons
+        // Elemek lekérése
         const registrationModal = document.getElementById("registrationModal");
         const signupBtn = document.getElementById("signupBtn");
         const closeBtn = document.querySelector(".close-button");
@@ -513,6 +512,7 @@
             'pl': '🇵🇱'
         };
 
+        // Nyelv beállítása
         async function setLanguage(langCode) {
             if (!langCode || !allTranslations) {
                 return;
@@ -547,6 +547,7 @@
             window.loginComingSoonAlert = currentTranslations.alert_login_coming_soon;
         }
 
+        // Oldal inicializálása
         async function initialize() {
             try {
                 const response = await fetch('text-content.json');
@@ -562,7 +563,7 @@
         
         document.addEventListener('DOMContentLoaded', initialize);
 
-        // Language selector event listener
+        // Nyelvválasztó eseményfigyelő
         langDropdown.addEventListener('click', (event) => {
             if (event.target.classList.contains('lang-option')) {
                 const selectedLang = event.target.getAttribute('data-lang');
@@ -571,6 +572,7 @@
             }
         });
 
+        // Bejelentkezési állapot ellenőrzése
         function checkLoginStatus() {
             if (localStorage.getItem('isLoggedIn') === 'true') {
                 authButtons.style.display = "none";
@@ -581,12 +583,12 @@
             }
         }
 
-        // Open modal
+        // Modális ablak megnyitása
         signupBtn.onclick = function() {
             registrationModal.style.display = "flex";
         }
 
-        // Close modal
+        // Modális ablak bezárása
         closeBtn.onclick = function() {
             registrationModal.style.display = "none";
         }
@@ -597,7 +599,7 @@
             }
         }
 
-        // Form submission logic
+        // Űrlap beküldési logika
         const registrationForm = document.getElementById("registrationForm");
         const passwordInput = document.getElementById("password");
         const confirmPasswordInput = document.getElementById("confirmPassword");
@@ -622,7 +624,7 @@
             checkLoginStatus();
         });
 
-        // Logout functionality
+        // Kijelentkezési funkció
         logoutBtn.onclick = function() {
             alert(window.logoutSuccessAlert);
             
@@ -631,7 +633,7 @@
             checkLoginStatus();
         }
         
-        // Login button (for now)
+        // Bejelentkezési gomb
         document.getElementById("loginBtn").onclick = function() {
             alert(window.loginComingSoonAlert);
         }
