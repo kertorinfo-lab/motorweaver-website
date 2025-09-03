@@ -6,7 +6,7 @@
     <title>MotorWeaver - Your Automotive Knowledge Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Alapbeállítások */
         :root {
@@ -18,6 +18,7 @@
             --card-bg: #ffffff;
             --text-light: #ecf0f1;
             --text-dark: #333;
+            --baby-blue: #89CFF0;
         }
 
         body {
@@ -30,9 +31,9 @@
 
         /* Fejléc */
         .header {
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            background-color: var(--card-bg);
+            color: var(--text-dark);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -48,10 +49,10 @@
         }
 
         .logo-text {
-            font-size: 1.8em;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.9em;
             font-weight: 700;
-            color: var(--primary-color);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            color: var(--baby-blue);
         }
 
         .header-right {
@@ -61,8 +62,8 @@
         }
 
         .nav-buttons button {
-            background-color: var(--primary-color);
-            color: white;
+            background-color: #f0f0f0;
+            color: var(--text-dark);
             border: none;
             padding: 8px 18px;
             border-radius: 5px;
@@ -72,7 +73,7 @@
         }
 
         .nav-buttons button:hover {
-            background-color: var(--primary-dark);
+            background-color: #e0e0e0;
         }
 
         .profile-container {
@@ -90,7 +91,7 @@
             display:flex;
             align-items:center;
             justify-content:center;
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--baby-blue);
             cursor: pointer;
         }
 
