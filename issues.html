@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Issues - MotorWeaver</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS from index.html goes here */
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-top">
+            <div class="logo-container">
+                <span class="logo-text">MotorWeaver</span>
+            </div>
+            
+            <div class="header-right">
+                <div class="language-selector">
+                    <span id="currentLangFlag" class="flag-icon">🇬🇧</span>
+                    <div class="dropdown-content" id="langDropdown">
+                        <a href="#" class="lang-option" data-lang="en">🇬🇧 English</a>
+                        <a href="#" class="lang-option" data-lang="hu">🇭🇺 Magyar</a>
+                        <a href="#" class="lang-option" data-lang="de">🇩🇪 Deutsch</a>
+                        <a href="#" class="lang-option" data-lang="ro">🇷🇴 Română</a>
+                        <a href="#" class="lang-option" data-lang="pl">🇵🇱 Polski</a>
+                    </div>
+                </div>
+                
+                <div class="nav-buttons" id="authButtons">
+                    <button id="loginBtn" data-key="login_btn">Login</button>
+                    <button id="signupBtn" data-key="signup_btn">Sign Up</button>
+                </div>
+                <div class="profile-container" id="profileContainer">
+                    <div class="profile-picture" id="profilePic">
+                        <span>👤</span>
+                    </div>
+                    <button class="logout-button" id="logoutBtn" data-key="logout_btn">Logout</button>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link" id="homeLink" data-key="home_link">Home</a>
+            <a href="issues.html" class="nav-link" id="issuesLink" data-key="issues_title">Common Issues</a>
+            <a href="prices.html" class="nav-link" id="pricesLink" data-key="prices_title">Part Prices</a>
+            <a href="costs.html" class="nav-link" id="costsLink" data-key="costs_title">Maintenance Costs</a>
+            <a href="reviews.html" class="nav-link" id="reviewsLink" data-key="reviews_title">Owner Reviews</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1 data-key="issues_title">Common Issues</h1>
+        <p>This is the page for detailed information on common car issues.</p>
+    </main>
+    
+    </body>
+</html>
