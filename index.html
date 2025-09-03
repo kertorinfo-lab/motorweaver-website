@@ -266,6 +266,31 @@
             margin-top: 0;
             color: #2c3e50;
         }
+        
+        .car-card hr {
+            margin: 15px 0;
+            border-color: #eee;
+        }
+        
+        .car-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .car-card li {
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .car-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .car-card p strong {
+            color: #2c3e50;
+        }
 
         /* Modális ablak stílusok */
         .modal {
@@ -479,28 +504,28 @@
     <div class="content-section" id="issues-section">
         <main>
             <h2 data-key="issues_title">Common Issues</h2>
-            <p>Itt található a részletes típushibák adatbázisa.</p>
+            <div id="issuesContent"></div>
         </main>
     </div>
 
     <div class="content-section" id="prices-section">
         <main>
             <h2 data-key="prices_title">Part Prices</h2>
-            <p>Itt található az alkatrész árkalkulátor.</p>
+            <div id="pricesContent"></div>
         </main>
     </div>
 
     <div class="content-section" id="costs-section">
         <main>
             <h2 data-key="costs_title">Maintenance Costs</h2>
-            <p>Itt található a karbantartási költség kalkulátor.</p>
+            <div id="costsContent"></div>
         </main>
     </div>
 
     <div class="content-section" id="reviews-section">
         <main>
             <h2 data-key="reviews_title">Owner Reviews</h2>
-            <p>Itt található a tulajdonosi értékelések adatbázisa.</p>
+            <div id="reviewsContent"></div>
         </main>
     </div>
 
@@ -614,12 +639,12 @@
                 if (currentTranslations[key]) {
                     if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
                         element.setAttribute('placeholder', currentTranslations[key]);
-                    } else if (element.tagName === 'BUTTON') {
+                    } else if (element.tagName === 'BUTTON' && !['registrationCloseBtn', 'loginCloseBtn'].includes(element.id)) {
                         element.textContent = currentTranslations[key];
                     } else if (element.tagName === 'LABEL' && element.hasAttribute('for')) {
                         element.innerHTML = currentTranslations[key];
-                    } else {
-                        element.textContent = currentTranslations[key];
+                    } else if (element.tagName !== 'INPUT' && element.tagName !== 'BUTTON' && element.tagName !== 'SPAN') {
+                         element.textContent = currentTranslations[key];
                     }
                 }
             });
@@ -632,6 +657,7 @@
             window.logoutSuccessAlert = currentTranslations.alert_logout_success;
             window.loginSuccessAlert = currentTranslations.alert_login_success;
             window.loginTitle = currentTranslations.login_title;
+            window.loginFailAlert = currentTranslations.alert_login_fail;
         }
 
         // Adatbázisok betöltése
@@ -660,34 +686,66 @@
             const lowerCaseQuery = query.toLowerCase();
 
             const results = allCarsData.filter(car => 
-                car.brand.toLowerCase().includes(lowerCaseQuery) || 
+                car.brand.toLowerCase().includes(lowerCaseQuery) && 
                 car.model.toLowerCase().includes(lowerCaseQuery)
             );
             
-            displayResults(results, currentLang);
+            displayAllCarData(results, currentLang);
         }
 
-        function displayResults(results, lang) {
+        // Az összes kategória adatainak megjelenítése
+        function displayAllCarData(results, lang) {
             searchResultsContainer.innerHTML = '';
             
             if (results.length === 0) {
-                const noResultsMessage = document.createElement('p');
-                noResultsMessage.style.textAlign = 'center';
-                noResultsMessage.textContent = allTranslations[lang].no_results_found || 'Nincs találat a keresésre.'; // Új kulcs a JSON-ban
-                searchResultsContainer.appendChild(noResultsMessage);
+                searchResultsContainer.innerHTML = `<p style="text-align: center;">${allTranslations[lang].no_results_found || 'No results found.'}</p>`;
                 return;
             }
-
-            results.forEach(car => {
-                const carCard = document.createElement('div');
-                carCard.classList.add('car-card');
-                carCard.innerHTML = `
+            
+            const car = results[0];
+            
+            const contentHTML = `
+                <div class="car-card">
                     <h3>${car.brand} ${car.model} (${car.year})</h3>
-                    <p><strong>${allTranslations[lang].issues_title}:</strong> ${car.common_issues.map(issue => issue.issue[lang]).join(', ')}</p>
-                    <p><strong>${allTranslations[lang].prices_title}:</strong> ${car.parts_prices.clutch_kit.name[lang]}: ${car.parts_prices.clutch_kit.price} Ft</p>
-                `;
-                searchResultsContainer.appendChild(carCard);
-            });
+                    <hr>
+                    
+                    <h4>${allTranslations[lang].issues_title} 🔧</h4>
+                    <ul>
+                        ${car.common_issues.map(issue => `
+                            <li>
+                                <strong>${issue.issue[lang]}</strong>: ${issue.description[lang]}
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <hr>
+                    
+                    <h4>${allTranslations[lang].prices_title} 💰</h4>
+                    <ul>
+                        ${Object.values(car.parts_prices).map(part => `
+                            <li><strong>${part.name[lang]}:</strong> ${part.price} Ft</li>
+                        `).join('')}
+                    </ul>
+                    <hr>
+                    
+                    <h4>${allTranslations[lang].costs_title} 📊</h4>
+                    <ul>
+                        ${car.maintenance_costs.map(cost => `
+                            <li><strong>${cost.task[lang]}:</strong> ${cost.cost} Ft</li>
+                        `).join('')}
+                    </ul>
+                    <hr>
+                    
+                    <h4>${allTranslations[lang].reviews_title} ⭐</h4>
+                    <ul>
+                        ${car.owner_reviews.map(review => `
+                            <li><strong>${allTranslations[lang].reviews_title.split(' ')[0]}:</strong> ${review.rating} / 5 <br>
+                            <strong>${allTranslations[lang].reviews_title.split(' ')[1]}:</strong> ${review.review[lang]}</li>
+                        `).join('')}
+                    </ul>
+                </div>
+            `;
+            
+            searchResultsContainer.innerHTML = contentHTML;
         }
 
         // Navigáció kezelése
@@ -728,7 +786,7 @@
         });
         
         homeLink.addEventListener('click', () => {
-             contentSections.forEach(section => {
+            contentSections.forEach(section => {
                 section.classList.remove('active');
             });
             document.getElementById('home-section').classList.add('active');
@@ -785,7 +843,6 @@
                 return;
             }
 
-            // Mentjük a felhasználó adatait (email és jelszó) a localStorage-ba
             localStorage.setItem('userEmail', document.getElementById("email").value);
             localStorage.setItem('userPassword', passwordInput.value);
             localStorage.setItem('isLoggedIn', 'true');
@@ -803,14 +860,13 @@
             const loginEmail = document.getElementById("loginEmail").value;
             const loginPassword = document.getElementById("loginPassword").value;
 
-            // Ellenőrizzük, hogy az elmentett adatok egyeznek-e
             if (loginEmail === localStorage.getItem('userEmail') && loginPassword === localStorage.getItem('userPassword')) {
                 localStorage.setItem('isLoggedIn', 'true');
                 alert(window.loginSuccessAlert);
                 loginModal.style.display = "none";
                 checkLoginStatus();
             } else {
-                alert("Incorrect email or password.");
+                alert(window.loginFailAlert);
             }
         });
 
@@ -824,8 +880,10 @@
         }
     
         // Az oldal inicializálása
-        document.addEventListener('DOMContentLoaded', loadData);
-        document.getElementById('home-section').classList.add('active'); // Az oldal betöltésekor a főoldal legyen aktív
+        document.addEventListener('DOMContentLoaded', () => {
+            loadData();
+            document.getElementById('home-section').classList.add('active'); 
+        });
     </script>
 </body>
 </html>
