@@ -9,19 +9,33 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Alapbeállítások */
+        :root {
+            --primary-color: #4CAF50;
+            --primary-dark: #45a049;
+            --dark-bg: #1a1a1a;
+            --medium-bg: #34495e;
+            --light-bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text-light: #ecf0f1;
+            --text-dark: #333;
+        }
+
         body {
             font-family: 'Roboto', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5;
-            color: #333;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
         }
 
         /* Fejléc */
         .header {
-            background-color: #1a1a1a;
-            color: #ecf0f1;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         
         .header-top {
@@ -29,18 +43,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 40px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .logo-text {
             font-size: 1.8em;
             font-weight: 700;
-            letter-spacing: 1px;
-            color: #4CAF50;
+            color: var(--primary-color);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
@@ -50,25 +60,19 @@
             gap: 20px;
         }
 
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
         .nav-buttons button {
-            background-color: #4CAF50;
+            background-color: var(--primary-color);
             color: white;
             border: none;
             padding: 8px 18px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.9em;
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
 
         .nav-buttons button:hover {
-            background-color: #45a049;
+            background-color: var(--primary-dark);
         }
 
         .profile-container {
@@ -81,11 +85,12 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: #f0f2f5;
-            font-size: 2em;
-            line-height: 40px;
-            text-align: center;
-            border: 2px solid #4CAF50;
+            background-color: var(--light-bg);
+            font-size: 1.5em;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            border: 2px solid var(--primary-color);
             cursor: pointer;
         }
 
@@ -96,7 +101,6 @@
             padding: 8px 18px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.9em;
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
@@ -108,12 +112,11 @@
         .language-selector {
             position: relative;
             display: inline-block;
-            cursor: pointer;
         }
 
         .flag-icon {
-            font-size: 2.5em;
-            line-height: 1;
+            font-size: 2.2em;
+            cursor: pointer;
         }
 
         .dropdown-content {
@@ -134,308 +137,182 @@
             padding: 12px 16px;
             text-decoration: none;
             display: block;
-            white-space: nowrap;
         }
 
-        .dropdown-content a:hover {
-            background-color: #f1f1f1;
-        }
+        .dropdown-content a:hover { background-color: #f1f1f1; }
+        .language-selector:hover .dropdown-content { display: block; }
 
-        .language-selector:hover .dropdown-content {
-            display: block;
-        }
-
-        .main-nav {
-            background-color: #34495e;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-
-        .nav-link {
-            color: #ecf0f1;
-            text-decoration: none;
-            padding: 10px 20px;
-            font-weight: bold;
-            font-size: 1em;
-            transition: background-color 0.3s ease;
-            border-radius: 5px;
-        }
-
-        .nav-link:hover {
-            background-color: #2c3e50;
-        }
-
-        /* Hero szekció - autós kép */
+        /* Hero szekció */
         .hero-section {
             width: 100%;
-            height: 400px;
-            background-image: url('https://images.unsplash.com/photo-1542362543-0a78601639d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDIyfHxjYXJ8ZW58MHx8fHwxNjk5MjU0ODgw&ixlib=rb-4.0.3&q=80&q=80&w=1080');
+            height: 50vh;
+            min-height: 350px;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542362543-0a78601639d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDIyfHxjYXJ8ZW58MHx8fHwxNjk5MjU0ODgw&ixlib=rb-4.0.3&q=80&w=1080');
             background-size: cover;
             background-position: center;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
             text-align: center;
-            flex-direction: column;
+            padding: 20px;
         }
 
         .hero-section h1 {
-            font-size: 3.5em;
+            font-size: clamp(2.5em, 5vw, 4em);
             margin-bottom: 10px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
         }
 
         .hero-section p {
-            font-size: 1.2em;
+            font-size: clamp(1em, 2vw, 1.3em);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
         }
 
         /* Kereső szekció */
         .search-section {
             padding: 50px 20px;
-            text-align: center;
             background-color: #e0e4e8;
-            border-bottom: 1px solid #ddd;
         }
 
         .search-bar-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            max-width: 600px;
+            position: relative;
+            max-width: 700px;
             margin: 0 auto;
+            display: flex;
         }
 
         #searchInput {
             flex-grow: 1;
-            padding: 12px 20px;
+            padding: 15px 25px;
             border: 1px solid #ccc;
-            border-radius: 25px;
-            font-size: 1em;
+            border-radius: 50px;
+            font-size: 1.1em;
             outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        #searchInput:focus {
-            border-color: #4CAF50;
-        }
-
-        #searchButton {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        #searchButton:hover {
-            background-color: #45a049;
-        }
-        
-        /* Fő tartalom */
-        .content-section {
-            display: none;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 20px auto;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .content-section.active {
-            display: block;
-        }
-        
-        .car-card {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
+            transition: all 0.3s ease;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        .car-card h3 {
+        #searchInput:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
+        }
+        
+        #searchSuggestions {
+            display: none;
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            z-index: 10;
+            max-height: 250px;
+            overflow-y: auto;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        .suggestion-item {
+            padding: 12px 25px;
+            cursor: pointer;
+            font-size: 1.05em;
+        }
+        .suggestion-item:hover {
+            background-color: #f1f1f1;
+        }
+        .suggestion-item:not(:last-child) {
+            border-bottom: 1px solid #eee;
+        }
+
+
+        /* Tartalom & Eredmények */
+        .content-section {
+            padding: 20px;
+            max-width: 1400px;
+            margin: 20px auto;
+        }
+        
+        #searchResultsContainer {
+            display: flex;
+            gap: 30px;
+            padding: 20px 10px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-color) var(--light-bg);
+        }
+        
+        .car-result-card {
+            flex: 0 0 clamp(300px, 90vw, 380px);
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            scroll-snap-align: center;
+        }
+
+        .car-result-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+
+        .car-result-card h3 {
+            text-align: center;
+            font-size: 1.5em;
             margin-top: 0;
-            color: #2c3e50;
+            margin-bottom: 20px;
+            color: var(--medium-bg);
         }
         
-        .car-card h4 {
-            margin-top: 0;
+        .card-section {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
         }
-        
-        .car-card hr {
-            margin: 15px 0;
-            border-color: #eee;
+        .card-section:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
         }
-        
-        .car-card ul {
+
+        .card-section h4 {
+            margin: 0 0 10px 0;
+            color: var(--text-dark);
+            font-size: 1.1em;
+        }
+        .card-section ul {
             list-style-type: none;
             padding-left: 0;
-            margin-bottom: 0;
+            margin: 0;
         }
-        
-        .car-card li {
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-        
-        .car-card h3 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .car-card p strong {
-            color: #2c3e50;
+        .card-section li {
+            margin-bottom: 8px;
+            line-height: 1.5;
         }
 
         /* Modális ablak stílusok */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 30px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            animation-name: animatetop;
-            animation-duration: 0.4s;
-        }
-
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            top: 10px;
-            right: 20px;
-            cursor: pointer;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: #333;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal h2 {
-            margin-top: 0;
-            color: #2c3e50;
-            text-align: center;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 1em;
-        }
-
-        .form-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .form-checkbox input[type="checkbox"] {
-            width: auto;
-        }
-
-        .form-checkbox a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        .register-button {
-            width: 100%;
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .register-button:hover {
-            background-color: #45a049;
-        }
-
-        /* Animáció a modális ablakhoz */
-        @keyframes animatetop {
-            from { top: -300px; opacity: 0 }
-            to { top: 0; opacity: 1 }
-        }
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
+        .modal-content { background-color: #fefefe; margin: auto; padding: 30px; border-radius: 10px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: animatetop 0.4s; }
+        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 10px; right: 20px; cursor: pointer; }
+        .close-button:hover, .close-button:focus { color: #333; }
+        .modal h2 { margin-top: 0; color: #2c3e50; text-align: center; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1em; }
+        .form-checkbox { display: flex; align-items: center; gap: 10px; }
+        .form-checkbox input[type="checkbox"] { width: auto; }
+        .form-checkbox a { color: var(--primary-color); text-decoration: none; }
+        .register-button { width: 100%; background-color: var(--primary-color); color: white; padding: 15px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s ease; margin-top: 10px; }
+        .register-button:hover { background-color: var(--primary-dark); }
+        @keyframes animatetop { from { transform: translateY(-100px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
 
         /* Reszponzív design */
         @media (max-width: 768px) {
-            .header-top {
-                flex-direction: column;
-                padding: 15px 20px;
-            }
-            .header-right {
-                flex-direction: column;
-                margin-top: 15px;
-                gap: 10px;
-            }
-            .nav-buttons {
-                margin-top: 10px;
-            }
-            .main-nav {
-                flex-wrap: wrap;
-                justify-content: space-around;
-            }
-            .nav-link {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-            .hero-section h1 {
-                font-size: 2.5em;
-            }
-            .hero-section p {
-                font-size: 1em;
-            }
+            .header-top { flex-direction: column; padding: 15px 20px; }
+            .header-right { flex-direction: column; margin-top: 15px; gap: 10px; }
         }
     </style>
 </head>
@@ -446,7 +323,6 @@
             <div class="logo-container">
                 <span class="logo-text">MotorWeaver</span>
             </div>
-            
             <div class="header-right">
                 <div class="language-selector">
                     <span id="currentLangFlag" class="flag-icon">🇬🇧</span>
@@ -458,120 +334,48 @@
                         <a href="#" class="lang-option" data-lang="pl">🇵🇱 Polski</a>
                     </div>
                 </div>
-                
                 <div class="nav-buttons" id="authButtons">
                     <button id="loginBtn" data-key="login_btn">Login</button>
                     <button id="signupBtn" data-key="signup_btn">Sign Up</button>
                 </div>
                 <div class="profile-container" id="profileContainer">
-                    <div class="profile-picture" id="profilePic">
-                        <span>👤</span>
-                    </div>
+                    <div class="profile-picture" id="profilePic"><span>👤</span></div>
                     <button class="logout-button" id="logoutBtn" data-key="logout_btn">Logout</button>
                 </div>
             </div>
         </div>
-        <nav class="main-nav">
-            <a href="#" class="nav-link" data-target="home-section" id="homeLink" data-key="home_link">Home</a>
-            <a href="#" class="nav-link" data-target="issues-section" id="issuesLink" data-key="issues_title">Common Issues</a>
-            <a href="#" class="nav-link" data-target="prices-section" id="pricesLink" data-key="prices_title">Part Prices</a>
-            <a href="#" class="nav-link" data-target="costs-section" id="costsLink" data-key="costs_title">Maintenance Costs</a>
-            <a href="#" class="nav-link" data-target="reviews-section" id="reviewsLink" data-key="reviews_title">Owner Reviews</a>
-            <a href="#" class="nav-link" data-target="search-results-section" id="searchResultsLink" style="display:none;"></a>
-        </nav>
     </header>
 
-    <div class="content-section active" id="home-section">
+    <div id="home-section">
         <div class="hero-section">
             <h1 data-key="welcome_title">Welcome to MotorWeaver</h1>
             <p data-key="welcome_text">Your ultimate automotive knowledge hub.</p>
         </div>
-        
         <div class="search-section">
             <div class="search-bar-container">
-                <input type="text" id="searchInput" data-key="placeholder_search" placeholder="Search for car brand or model (e.g., Audi A4)">
-                <button id="searchButton" data-key="search_btn">Search</button>
+                <input type="text" id="searchInput" data-key="placeholder_search" placeholder="Search for car brand or model (e.g., Audi A4)" autocomplete="off">
+                <div id="searchSuggestions"></div>
             </div>
         </div>
-        <main>
-            <h2 data-key="explore_title">Explore a World of Automotive Information</h2>
-            <p data-key="explore_text_p1">
-                Dive deep into detailed type-specific issues, find average part prices,
-                calculate maintenance costs, and read real owner experiences.
-                MotorWeaver is your go-to source for everything automotive.
-            </p>
-            <p data-key="explore_text_p2">
-                Stay tuned as we build the most comprehensive database for car enthusiasts and owners alike.
-            </p>
-        </main>
     </div>
 
-    <div class="content-section" id="issues-section">
+    <div class="content-section" id="search-results-section" style="display: none;">
         <main>
-            <h2 data-key="issues_title">Common Issues</h2>
-            <div id="issuesContent"></div>
-        </main>
-    </div>
-
-    <div class="content-section" id="prices-section">
-        <main>
-            <h2 data-key="prices_title">Part Prices</h2>
-            <div id="pricesContent"></div>
-        </main>
-    </div>
-
-    <div class="content-section" id="costs-section">
-        <main>
-            <h2 data-key="costs_title">Maintenance Costs</h2>
-            <div id="costsContent"></div>
-        </main>
-    </div>
-
-    <div class="content-section" id="reviews-section">
-        <main>
-            <h2 data-key="reviews_title">Owner Reviews</h2>
-            <div id="reviewsContent"></div>
-        </main>
-    </div>
-
-    <div class="content-section" id="search-results-section">
-        <main>
-            <h2 data-key="search_results_title">Search Results</h2>
-            <div id="searchResultsContainer">
-                </div>
+            <h2 data-key="search_results_title" style="text-align: center;">Search Results</h2>
+            <div id="searchResultsContainer"></div>
         </main>
     </div>
 
     <div id="registrationModal" class="modal">
         <div class="modal-content">
             <span class="close-button" id="registrationCloseBtn">&times;</span>
-            <h2 data-key="signup_title">Create Your MotorWeaver Account</h2>
+            <h2 data-key="signup_title">Create Account</h2>
             <form id="registrationForm">
-                <div class="form-group">
-                    <label for="fullName" data-key="fullName_label">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email" data-key="email_label">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="password" data-key="password_label">Password</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword" data-key="confirmPassword_label">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
-                </div>
-
-                <div class="form-checkbox">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms" data-key="terms_label">I have read and agree to the <a href="#">Terms and Conditions</a>.</label>
-                </div>
-
+                <div class="form-group"><label for="fullName" data-key="fullName_label">Full Name</label><input type="text" id="fullName" required></div>
+                <div class="form-group"><label for="email" data-key="email_label">Email</label><input type="email" id="email" required></div>
+                <div class="form-group"><label for="password" data-key="password_label">Password</label><input type="password" id="password" required></div>
+                <div class="form-group"><label for="confirmPassword" data-key="confirmPassword_label">Confirm Password</label><input type="password" id="confirmPassword" required></div>
+                <div class="form-checkbox"><input type="checkbox" id="terms" required><label for="terms" data-key="terms_label">I agree to the <a href="#">Terms</a>.</label></div>
                 <button type="submit" class="register-button" data-key="register_btn">Register</button>
             </form>
         </div>
@@ -580,25 +384,17 @@
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-button" id="loginCloseBtn">&times;</span>
-            <h2 data-key="login_title">Login to MotorWeaver</h2>
+            <h2 data-key="login_title">Login</h2>
             <form id="loginForm">
-                <div class="form-group">
-                    <label for="loginEmail" data-key="email_label">Email Address</label>
-                    <input type="email" id="loginEmail" name="loginEmail" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="loginPassword" data-key="password_label">Password</label>
-                    <input type="password" id="loginPassword" name="loginPassword" required>
-                </div>
-
+                <div class="form-group"><label for="loginEmail" data-key="email_label">Email</label><input type="email" id="loginEmail" required></div>
+                <div class="form-group"><label for="loginPassword" data-key="password_label">Password</label><input type="password" id="loginPassword" required></div>
                 <button type="submit" class="register-button" data-key="login_btn">Login</button>
             </form>
         </div>
     </div>
 
     <script>
-        // Elemek lekérése
+        // DOM Elements
         const registrationModal = document.getElementById("registrationModal");
         const loginModal = document.getElementById("loginModal");
         const signupBtn = document.getElementById("signupBtn");
@@ -610,282 +406,186 @@
         const logoutBtn = document.getElementById("logoutBtn");
         const langDropdown = document.getElementById("langDropdown");
         const currentLangFlag = document.getElementById("currentLangFlag");
-        const navLinks = document.querySelectorAll('.main-nav .nav-link');
-        const contentSections = document.querySelectorAll('.content-section');
         const searchInput = document.getElementById("searchInput");
-        const searchButton = document.getElementById("searchButton");
+        const searchSuggestions = document.getElementById("searchSuggestions");
         const searchResultsContainer = document.getElementById("searchResultsContainer");
-        const homeLink = document.getElementById("homeLink");
+        const searchResultsSection = document.getElementById("search-results-section");
 
         let allTranslations;
         let allCarsData;
 
-        const languageFlags = {
-            'en': '🇬🇧',
-            'hu': '🇭🇺',
-            'de': '🇩🇪',
-            'ro': '🇷🇴',
-            'pl': '🇵🇱'
-        };
+        const languageFlags = { 'en': '🇬🇧', 'hu': '🇭🇺', 'de': '🇩🇪', 'ro': '🇷🇴', 'pl': '🇵🇱' };
 
-        // Nyelv beállítása
+        // Functions
         async function setLanguage(langCode) {
-            if (!langCode || !allTranslations) {
-                return;
-            }
+            if (!langCode || !allTranslations) return;
             
             localStorage.setItem('userLanguage', langCode);
             currentLangFlag.textContent = languageFlags[langCode];
-
             const currentTranslations = allTranslations[langCode];
             
-            document.querySelectorAll('[data-key]').forEach(element => {
-                const key = element.getAttribute('data-key');
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
                 if (currentTranslations[key]) {
-                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
-                        element.setAttribute('placeholder', currentTranslations[key]);
-                    } else if (element.tagName === 'BUTTON' && !['registrationCloseBtn', 'loginCloseBtn'].includes(element.id)) {
-                        element.textContent = currentTranslations[key];
-                    } else if (element.tagName === 'LABEL' && element.hasAttribute('for')) {
-                        element.innerHTML = currentTranslations[key];
-                    } else if (element.tagName !== 'INPUT' && element.tagName !== 'BUTTON' && element.tagName !== 'SPAN') {
-                        element.textContent = currentTranslations[key];
-                    }
+                    if (el.placeholder) el.placeholder = currentTranslations[key];
+                    else if (el.tagName === 'LABEL') el.innerHTML = currentTranslations[key];
+                    else el.textContent = currentTranslations[key];
                 }
             });
             
             document.title = `MotorWeaver - ${currentTranslations.welcome_text}`;
-            
             window.passwordMismatchAlert = currentTranslations.alert_password_mismatch;
             window.termsUnacceptedAlert = currentTranslations.alert_terms_unaccepted;
             window.registrationSuccessAlert = currentTranslations.alert_registration_success;
             window.logoutSuccessAlert = currentTranslations.alert_logout_success;
             window.loginSuccessAlert = currentTranslations.alert_login_success;
-            window.loginTitle = currentTranslations.login_title;
             window.loginFailAlert = currentTranslations.alert_login_fail;
         }
 
-        // Adatbázisok betöltése
         async function loadData() {
             try {
-                const textResponse = await fetch('text-content.json');
+                const [textResponse, carsResponse] = await Promise.all([
+                    fetch('text-content.json'),
+                    fetch('cars.json')
+                ]);
                 allTranslations = await textResponse.json();
-                
-                const carsResponse = await fetch('cars.json');
                 allCarsData = await carsResponse.json();
-
                 const savedLanguage = localStorage.getItem('userLanguage') || 'en';
-                setLanguage(savedLanguage);
+                await setLanguage(savedLanguage);
                 checkLoginStatus();
             } catch (error) {
-                console.error('Hiba az adatok betöltésekor:', error);
+                console.error('Error loading data:', error);
             }
         }
         
-        // Keresőfunkció
-        function searchCars(query) {
-            if (!allCarsData) {
-                return;
-            }
-            const currentLang = localStorage.getItem('userLanguage') || 'en';
-            const lowerCaseQuery = query.toLowerCase();
-
-            const results = allCarsData.filter(car => {
-                const fullCarName = `${car.brand.toLowerCase()} ${car.model.toLowerCase()}`;
-                return fullCarName.includes(lowerCaseQuery);
-            });
-            
-            displayAllCarData(results, currentLang);
-        }
-
-        // Az adatok megjelenítése kategóriákra bontva
-        function displayAllCarData(results, lang) {
+        function displayResultsInPanel(results, lang) {
             searchResultsContainer.innerHTML = '';
             
-            if (results.length === 0) {
-                searchResultsContainer.innerHTML = `<p style="text-align: center;">${allTranslations[lang].no_results_found || 'No results found.'}</p>`;
+            if (!results || results.length === 0) {
+                searchResultsContainer.innerHTML = `<p style="text-align: center; width: 100%;">${allTranslations[lang].no_results_found || 'No results found.'}</p>`;
+            } else {
+                results.forEach(car => {
+                    const contentHTML = `
+                        <div class="car-result-card">
+                            <h3>${car.brand} ${car.model} (${car.year})</h3>
+                            <div class="card-section">
+                                <h4>${allTranslations[lang].issues_title} 🔧</h4>
+                                <ul>${car.common_issues.map(i => `<li><strong>${i.issue[lang]}:</strong> ${i.description[lang]}</li>`).join('')}</ul>
+                            </div>
+                            <div class="card-section">
+                                <h4>${allTranslations[lang].prices_title} 💰</h4>
+                                <ul>${Object.values(car.parts_prices).map(p => `<li><strong>${p.name[lang]}:</strong> ${p.price} Ft</li>`).join('')}</ul>
+                            </div>
+                            <div class="card-section">
+                                <h4>${allTranslations[lang].costs_title} 📊</h4>
+                                <ul>${car.maintenance_costs.map(c => `<li><strong>${c.task[lang]}:</strong> ${c.cost} Ft</li>`).join('')}</ul>
+                            </div>
+                            <div class="card-section">
+                                <h4>${allTranslations[lang].reviews_title} ⭐</h4>
+                                <ul>${car.owner_reviews.map(r => `<li><strong>Rating:</strong> ${r.rating} / 5 <br><strong>Review:</strong> ${r.review[lang]}</li>`).join('')}</ul>
+                            </div>
+                        </div>
+                    `;
+                    searchResultsContainer.innerHTML += contentHTML;
+                });
+            }
+            searchResultsSection.style.display = 'block';
+        }
+
+        function showSuggestions(query) {
+            searchSuggestions.innerHTML = '';
+            if (query.length === 0) {
+                searchSuggestions.style.display = 'none';
+                searchResultsSection.style.display = 'none';
                 return;
             }
-            
-            results.forEach(car => {
-                const contentHTML = `
-                    <div class="car-result-container">
-                        <h3 style="text-align: center; font-size: 1.8em; margin-bottom: 20px;">${car.brand} ${car.model} (${car.year})</h3>
 
-                        <div class="car-card">
-                            <h4>${allTranslations[lang].issues_title} 🔧</h4>
-                            <ul>
-                                ${car.common_issues.map(issue => `
-                                    <li>
-                                        <strong>${issue.issue[lang]}</strong>: ${issue.description[lang]}
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
+            const lowerCaseQuery = query.toLowerCase();
+            const results = allCarsData.filter(car => 
+                `${car.brand.toLowerCase()} ${car.model.toLowerCase()}`.includes(lowerCaseQuery)
+            );
 
-                        <div class="car-card">
-                            <h4>${allTranslations[lang].prices_title} 💰</h4>
-                            <ul>
-                                ${Object.values(car.parts_prices).map(part => `
-                                    <li><strong>${part.name[lang]}:</strong> ${part.price} Ft</li>
-                                `).join('')}
-                            </ul>
-                        </div>
-
-                        <div class="car-card">
-                            <h4>${allTranslations[lang].costs_title} 📊</h4>
-                            <ul>
-                                ${car.maintenance_costs.map(cost => `
-                                    <li><strong>${cost.task[lang]}:</strong> ${cost.cost} Ft</li>
-                                `).join('')}
-                            </ul>
-                        </div>
-
-                        <div class="car-card">
-                            <h4>${allTranslations[lang].reviews_title} ⭐</h4>
-                            <ul>
-                                ${car.owner_reviews.map(review => `
-                                    <li>
-                                        <strong>${allTranslations[lang].reviews_title.split(' ')[0]}:</strong> ${review.rating} / 5 <br>
-                                        <strong>${allTranslations[lang].reviews_title.split(' ')[1] || 'Review'}:</strong> ${review.review[lang]}
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                `;
-                searchResultsContainer.innerHTML += contentHTML;
-            });
-        }
-
-
-        // Navigáció kezelése
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('data-target');
-
-                contentSections.forEach(section => {
-                    section.classList.remove('active');
+            if (results.length > 0) {
+                results.forEach(car => {
+                    const item = document.createElement('div');
+                    item.className = 'suggestion-item';
+                    item.textContent = `${car.brand} ${car.model}`;
+                    item.onclick = () => {
+                        searchInput.value = item.textContent;
+                        searchSuggestions.style.display = 'none';
+                        const currentLang = localStorage.getItem('userLanguage') || 'en';
+                        displayResultsInPanel([car], currentLang);
+                    };
+                    searchSuggestions.appendChild(item);
                 });
-                document.getElementById(targetId).classList.add('active');
-            });
-        });
-
-        // Nyelvválasztó eseményfigyelő
-        langDropdown.addEventListener('click', (event) => {
-            if (event.target.classList.contains('lang-option')) {
-                const selectedLang = event.target.getAttribute('data-lang');
-                setLanguage(selectedLang);
-                event.preventDefault();
-            }
-        });
-
-        // Keresés kezelő függvény
-        function handleSearch(query) {
-            if (query.trim().length > 0) {
-                contentSections.forEach(section => section.classList.remove('active'));
-                document.getElementById('search-results-section').classList.add('active');
-                searchCars(query);
+                searchSuggestions.style.display = 'block';
             } else {
-                contentSections.forEach(section => section.classList.remove('active'));
-                document.getElementById('home-section').classList.add('active');
-                searchResultsContainer.innerHTML = ''; 
+                searchSuggestions.style.display = 'none';
             }
         }
-
-        // Keresőgomb, Enter és gépelés eseményfigyelők
-        searchButton.addEventListener('click', () => {
-            handleSearch(searchInput.value);
-        });
-
+        
+        function checkLoginStatus() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            authButtons.style.display = isLoggedIn ? "none" : "flex";
+            profileContainer.style.display = isLoggedIn ? "flex" : "none";
+        }
+        
+        // Event Listeners
+        searchInput.addEventListener('input', () => showSuggestions(searchInput.value));
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                e.preventDefault(); 
-                handleSearch(searchInput.value);
+                e.preventDefault();
+                const currentLang = localStorage.getItem('userLanguage') || 'en';
+                const results = allCarsData.filter(car => 
+                    `${car.brand.toLowerCase()} ${car.model.toLowerCase()}`.includes(searchInput.value.toLowerCase())
+                );
+                displayResultsInPanel(results, currentLang);
+                searchSuggestions.style.display = 'none';
             }
         });
 
-        searchInput.addEventListener('input', () => {
-            handleSearch(searchInput.value);
-        });
-        
-        homeLink.addEventListener('click', () => {
-            contentSections.forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById('home-section').classList.add('active');
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-bar-container')) {
+                searchSuggestions.style.display = 'none';
+            }
         });
 
-        // Bejelentkezési állapot ellenőrzése
-        function checkLoginStatus() {
-            if (localStorage.getItem('isLoggedIn') === 'true') {
-                authButtons.style.display = "none";
-                profileContainer.style.display = "flex";
-            } else {
-                authButtons.style.display = "flex";
-                profileContainer.style.display = "none";
+        langDropdown.addEventListener('click', (e) => {
+            if (e.target.classList.contains('lang-option')) {
+                setLanguage(e.target.getAttribute('data-lang'));
+                e.preventDefault();
             }
-        }
+        });
 
-        // Modális ablakok megnyitása és bezárása
-        signupBtn.onclick = function() {
-            registrationModal.style.display = "flex";
-        }
-        loginBtn.onclick = function() {
-            loginModal.style.display = "flex";
-        }
-        registrationCloseBtn.onclick = function() {
-            registrationModal.style.display = "none";
-        }
-        loginCloseBtn.onclick = function() {
-            loginModal.style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == registrationModal) {
-                registrationModal.style.display = "none";
-            }
-            if (event.target == loginModal) {
-                loginModal.style.display = "none";
-            }
+        signupBtn.onclick = () => { registrationModal.style.display = "flex"; }
+        loginBtn.onclick = () => { loginModal.style.display = "flex"; }
+        registrationCloseBtn.onclick = () => { registrationModal.style.display = "none"; }
+        loginCloseBtn.onclick = () => { loginModal.style.display = "none"; }
+        window.onclick = (e) => {
+            if (e.target == registrationModal) registrationModal.style.display = "none";
+            if (e.target == loginModal) loginModal.style.display = "none";
         }
         
-        // Regisztrációs űrlap beküldési logika
-        const registrationForm = document.getElementById("registrationForm");
-        registrationForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const passwordInput = document.getElementById("password");
-            const confirmPasswordInput = document.getElementById("confirmPassword");
-
-            if (passwordInput.value !== confirmPasswordInput.value) {
-                alert(window.passwordMismatchAlert);
-                return;
-            }
-            if (!document.getElementById("terms").checked) {
-                alert(window.termsUnacceptedAlert);
-                return;
-            }
+        document.getElementById("registrationForm").addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pass = document.getElementById("password").value;
+            const confirmPass = document.getElementById("confirmPassword").value;
+            if (pass !== confirmPass) { alert(window.passwordMismatchAlert); return; }
+            if (!document.getElementById("terms").checked) { alert(window.termsUnacceptedAlert); return; }
 
             localStorage.setItem('userEmail', document.getElementById("email").value);
-            localStorage.setItem('userPassword', passwordInput.value);
+            localStorage.setItem('userPassword', pass);
             localStorage.setItem('isLoggedIn', 'true');
-            
             alert(window.registrationSuccessAlert);
             registrationModal.style.display = "none";
             checkLoginStatus();
         });
 
-        // Bejelentkezési űrlap beküldési logika
-        const loginForm = document.getElementById("loginForm");
-        loginForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const loginEmail = document.getElementById("loginEmail").value;
-            const loginPassword = document.getElementById("loginPassword").value;
-
-            if (loginEmail === localStorage.getItem('userEmail') && loginPassword === localStorage.getItem('userPassword')) {
+        document.getElementById("loginForm").addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const pass = document.getElementById("loginPassword").value;
+            if (email === localStorage.getItem('userEmail') && pass === localStorage.getItem('userPassword')) {
                 localStorage.setItem('isLoggedIn', 'true');
                 alert(window.loginSuccessAlert);
                 loginModal.style.display = "none";
@@ -895,20 +595,14 @@
             }
         });
 
-        // Kijelentkezési funkció
-        logoutBtn.onclick = function() {
+        logoutBtn.onclick = () => {
             alert(window.logoutSuccessAlert);
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userEmail');
-            localStorage.removeItem('userPassword');
+            localStorage.clear();
             checkLoginStatus();
         }
     
-        // Az oldal inicializálása
-        document.addEventListener('DOMContentLoaded', () => {
-            loadData();
-            document.getElementById('home-section').classList.add('active'); 
-        });
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
 </html>
