@@ -18,7 +18,7 @@
             --card-bg: #ffffff;
             --text-light: #ecf0f1;
             --text-dark: #333;
-            --baby-blue: #89CFF0;
+            --strong-blue: #4A90E2;
         }
 
         body {
@@ -33,10 +33,11 @@
         .header {
             background-color: var(--card-bg);
             color: var(--text-dark);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             position: sticky;
             top: 0;
             z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
         }
         
         .header-top {
@@ -52,7 +53,8 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.9em;
             font-weight: 700;
-            color: var(--baby-blue);
+            color: var(--strong-blue);
+            text-shadow: 1px 1px 0px #fff, 2px 2px 2px rgba(0,0,0,0.15);
         }
 
         .header-right {
@@ -91,7 +93,7 @@
             display:flex;
             align-items:center;
             justify-content:center;
-            border: 2px solid var(--baby-blue);
+            border: 2px solid var(--strong-blue);
             cursor: pointer;
         }
 
