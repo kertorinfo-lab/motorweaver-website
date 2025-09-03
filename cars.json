@@ -23,34 +23,34 @@
       }
     ],
     "parts_prices": {
-      "clutch_kit": { 
-        "name": { 
-          "en": "Clutch kit", 
+      "clutch_kit": {
+        "name": {
+          "en": "Clutch kit",
           "hu": "Kuplung szett",
           "de": "Kupplungssatz",
           "ro": "Kit ambreiaj",
           "pl": "Zestaw sprzęgła"
-        }, 
-        "price": 180000 
+        },
+        "price": 180000
       }
     },
     "maintenance_costs": [
-      { 
-        "task": { 
-          "en": "Oil change", 
+      {
+        "task": {
+          "en": "Oil change",
           "hu": "Olajcsere",
           "de": "Ölwechsel",
           "ro": "Schimb de ulei",
           "pl": "Wymiana oleju"
-        }, 
-        "cost": 30000 
+        },
+        "cost": 30000
       }
     ],
     "owner_reviews": [
-      { 
-        "rating": 4.5, 
-        "review": { 
-          "en": "Reliable car, but maintenance is expensive.", 
+      {
+        "rating": 4.5,
+        "review": {
+          "en": "Reliable car, but maintenance is expensive.",
           "hu": "Megbízható autó, de a szerviz drága.",
           "de": "Zuverlässiges Auto, aber Wartung ist teuer.",
           "ro": "Mașină fiabilă, dar întreținerea este scumpă.",
@@ -83,34 +83,34 @@
       }
     ],
     "parts_prices": {
-      "turbocharger": { 
-        "name": { 
-          "en": "Turbocharger", 
+      "turbocharger": {
+        "name": {
+          "en": "Turbocharger",
           "hu": "Turbófeltöltő",
           "de": "Turbolader",
           "ro": "Turbocompresor",
           "pl": "Turbosprężarka"
-        }, 
-        "price": 400000 
+        },
+        "price": 400000
       }
     },
     "maintenance_costs": [
-      { 
-        "task": { 
-          "en": "Oil change", 
+      {
+        "task": {
+          "en": "Oil change",
           "hu": "Olajcsere",
           "de": "Ölwechsel",
           "ro": "Schimb de ulei",
           "pl": "Wymiana oleoju"
-        }, 
-        "cost": 35000 
+        },
+        "cost": 35000
       }
     ],
     "owner_reviews": [
-      { 
-        "rating": 4.8, 
-        "review": { 
-          "en": "Very dynamic, sporty driving experience.", 
+      {
+        "rating": 4.8,
+        "review": {
+          "en": "Very dynamic, sporty driving experience.",
           "hu": "Nagyon dinamikus, sportos vezetési élmény.",
           "de": "Sehr dynamisches, sportliches Fahrerlebnis.",
           "ro": "Experiență de condus foarte dinamică și sportivă.",
