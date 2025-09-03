@@ -44,6 +44,13 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         }
 
+        /* NEW: Header right container */
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
         .nav-buttons {
             display: flex;
             gap: 15px;
@@ -360,8 +367,13 @@
                 flex-direction: column;
                 padding: 15px 20px;
             }
-            .nav-buttons {
+            .header-right {
+                flex-direction: column;
                 margin-top: 15px;
+                gap: 10px;
+            }
+            .nav-buttons {
+                margin-top: 10px;
             }
             .main-nav {
                 flex-wrap: wrap;
@@ -388,26 +400,28 @@
                 <span class="logo-text">MotorWeaver</span>
             </div>
             
-            <div class="language-selector">
-                <span id="currentLangFlag" class="flag-icon">🇬🇧</span>
-                <div class="dropdown-content" id="langDropdown">
-                    <a href="#" class="lang-option" data-lang="en">🇬🇧 English</a>
-                    <a href="#" class="lang-option" data-lang="hu">🇭🇺 Magyar</a>
-                    <a href="#" class="lang-option" data-lang="de">🇩🇪 Deutsch</a>
-                    <a href="#" class="lang-option" data-lang="ro">🇷🇴 Română</a>
-                    <a href="#" class="lang-option" data-lang="pl">🇵🇱 Polski</a>
+            <div class="header-right">
+                <div class="language-selector">
+                    <span id="currentLangFlag" class="flag-icon">🇬🇧</span>
+                    <div class="dropdown-content" id="langDropdown">
+                        <a href="#" class="lang-option" data-lang="en">🇬🇧 English</a>
+                        <a href="#" class="lang-option" data-lang="hu">🇭🇺 Magyar</a>
+                        <a href="#" class="lang-option" data-lang="de">🇩🇪 Deutsch</a>
+                        <a href="#" class="lang-option" data-lang="ro">🇷🇴 Română</a>
+                        <a href="#" class="lang-option" data-lang="pl">🇵🇱 Polski</a>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="nav-buttons" id="authButtons">
-                <button id="loginBtn" data-key="login_btn">Login</button>
-                <button id="signupBtn" data-key="signup_btn">Sign Up</button>
-            </div>
-            <div class="profile-container" id="profileContainer">
-                <div class="profile-picture" id="profilePic">
-                    <span>👤</span>
+                
+                <div class="nav-buttons" id="authButtons">
+                    <button id="loginBtn" data-key="login_btn">Login</button>
+                    <button id="signupBtn" data-key="signup_btn">Sign Up</button>
                 </div>
-                <button class="logout-button" id="logoutBtn" data-key="logout_btn">Logout</button>
+                <div class="profile-container" id="profileContainer">
+                    <div class="profile-picture" id="profilePic">
+                        <span>👤</span>
+                    </div>
+                    <button class="logout-button" id="logoutBtn" data-key="logout_btn">Logout</button>
+                </div>
             </div>
         </div>
         <nav class="main-nav">
@@ -467,7 +481,7 @@
                     <label for="confirmPassword" data-key="confirmPassword_label">Confirm Password</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" required>
                 </div>
-                
+
                 <div class="form-checkbox">
                     <input type="checkbox" id="terms" name="terms" required>
                     <label for="terms" data-key="terms_label">I have read and agree to the <a href="#">Terms and Conditions</a>.</label>
