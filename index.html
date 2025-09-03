@@ -256,6 +256,15 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             scroll-snap-align: center;
         }
+        
+        .car-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background-color: #eee;
+        }
 
         .car-result-card:hover {
             transform: translateY(-8px);
@@ -294,7 +303,41 @@
         .card-section li {
             margin-bottom: 8px;
             line-height: 1.5;
+            display: flex;
+            align-items: flex-start;
         }
+
+        .card-section li .icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+            margin-top: 2px;
+        }
+        
+        .cost-scale-container {
+            margin-top: 10px;
+        }
+
+        .cost-scale-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .cost-scale-bar-inner {
+            height: 100%;
+            border-radius: 5px;
+            transition: width 0.5s ease;
+        }
+
+        .cost-scale-label {
+            text-align: right;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
 
         /* Modális ablak stílusok */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
@@ -461,6 +504,29 @@
             }
         }
         
+        function getIconForItem(name, lang) {
+            const lowerCaseName = name[lang]?.toLowerCase() || '';
+            if (lowerCaseName.includes('kuplung') || lowerCaseName.includes('clutch')) return '⚙️';
+            if (lowerCaseName.includes('turbó') || lowerCaseName.includes('turbo')) return '🛢️';
+            if (lowerCaseName.includes('olaj') || lowerCaseName.includes('oil')) return '💧';
+            if (lowerCaseName.includes('motor') || lowerCaseName.includes('engine')) return '🔩';
+            return '🔧';
+        }
+
+        function calculateMaintenanceScale(costs, lang) {
+            const totalCost = costs.reduce((sum, item) => sum + item.cost, 0);
+            const lowThreshold = 50000;
+            const highThreshold = 150000;
+            
+            if (totalCost <= lowThreshold) {
+                return { percentage: 33, color: '#28a745', label: allTranslations[lang].cost_low || 'Low' };
+            } else if (totalCost <= highThreshold) {
+                return { percentage: 66, color: '#ffc107', label: allTranslations[lang].cost_medium || 'Medium' };
+            } else {
+                return { percentage: 100, color: '#dc3545', label: allTranslations[lang].cost_high || 'High' };
+            }
+        }
+        
         function displayResultsInPanel(results, lang) {
             searchResultsContainer.innerHTML = '';
             
@@ -468,24 +534,38 @@
                 searchResultsContainer.innerHTML = `<p style="text-align: center; width: 100%;">${allTranslations[lang].no_results_found || 'No results found.'}</p>`;
             } else {
                 results.forEach(car => {
+                    const scale = calculateMaintenanceScale(car.maintenance_costs, lang);
+                    const carImageText = `${car.brand}+${car.model}+${car.year}`;
+                    const carImageUrl = `https://placehold.co/600x400/e0e4e8/333?text=${carImageText}`;
+
                     const contentHTML = `
                         <div class="car-result-card">
+                            <img class="car-image" src="${carImageUrl}" alt="${car.brand} ${car.model}">
                             <h3>${car.brand} ${car.model} (${car.year})</h3>
+                            
                             <div class="card-section">
-                                <h4>${allTranslations[lang].issues_title} 🔧</h4>
-                                <ul>${car.common_issues.map(i => `<li><strong>${i.issue[lang]}:</strong> ${i.description[lang]}</li>`).join('')}</ul>
+                                <h4>${allTranslations[lang].issues_title}</h4>
+                                <ul>${car.common_issues.map(i => `<li><span class="icon">${getIconForItem(i.issue, lang)}</span><div><strong>${i.issue[lang]}:</strong> ${i.description[lang]}</div></li>`).join('')}</ul>
                             </div>
+                            
                             <div class="card-section">
-                                <h4>${allTranslations[lang].prices_title} 💰</h4>
-                                <ul>${Object.values(car.parts_prices).map(p => `<li><strong>${p.name[lang]}:</strong> ${p.price} Ft</li>`).join('')}</ul>
+                                <h4>${allTranslations[lang].prices_title}</h4>
+                                <ul>${Object.values(car.parts_prices).map(p => `<li><span class="icon">${getIconForItem(p.name, lang)}</span><div><strong>${p.name[lang]}:</strong> ${p.price} Ft</div></li>`).join('')}</ul>
                             </div>
+                            
                             <div class="card-section">
-                                <h4>${allTranslations[lang].costs_title} 📊</h4>
-                                <ul>${car.maintenance_costs.map(c => `<li><strong>${c.task[lang]}:</strong> ${c.cost} Ft</li>`).join('')}</ul>
+                                <h4>${allTranslations[lang].costs_title}</h4>
+                                <div class="cost-scale-container">
+                                    <div class="cost-scale-bar">
+                                        <div class="cost-scale-bar-inner" style="width: ${scale.percentage}%; background-color: ${scale.color};"></div>
+                                    </div>
+                                    <div class="cost-scale-label" style="color: ${scale.color}">${scale.label}</div>
+                                </div>
                             </div>
+
                             <div class="card-section">
                                 <h4>${allTranslations[lang].reviews_title} ⭐</h4>
-                                <ul>${car.owner_reviews.map(r => `<li><strong>Rating:</strong> ${r.rating} / 5 <br><strong>Review:</strong> ${r.review[lang]}</li>`).join('')}</ul>
+                                <ul>${car.owner_reviews.map(r => `<li><div><strong>Rating:</strong> ${r.rating} / 5 <br><strong>Review:</strong> ${r.review[lang]}</div></li>`).join('')}</ul>
                             </div>
                         </div>
                     `;
@@ -609,3 +689,4 @@
     </script>
 </body>
 </html>
+
