@@ -1,0 +1,122 @@
+[
+  {
+    "brand": "Audi",
+    "model": "A4",
+    "year": 2015,
+    "common_issues": [
+      {
+        "issue": {
+          "en": "Engine control unit failure",
+          "hu": "Motorvezérlő hiba",
+          "de": "Motorsteuergerät-Fehler",
+          "ro": "Eșecul unității de control a motorului",
+          "pl": "Awaria jednostki sterującej silnika"
+        },
+        "description": {
+          "en": "Engine control software error can cause jerking and increased fuel consumption.",
+          "hu": "A motorvezérlő szoftveres hibája miatt a motor rángathat és megnőhet a fogyasztás.",
+          "de": "Softwarefehler der Motorsteuerung kann Ruckeln und erhöhten Kraftstoffverbrauch verursachen.",
+          "ro": "Eroarea software-ului de control al motorului poate provoca smucituri și consum crescut de combustibil.",
+          "pl": "Błąd oprogramowania sterującego silnikiem może powodować szarpanie i zwiększone zużycie paliwa."
+        },
+        "cost_estimate": { "min": 50000, "max": 150000 }
+      }
+    ],
+    "parts_prices": {
+      "clutch_kit": { 
+        "name": { 
+          "en": "Clutch kit", 
+          "hu": "Kuplung szett",
+          "de": "Kupplungssatz",
+          "ro": "Kit ambreiaj",
+          "pl": "Zestaw sprzęgła"
+        }, 
+        "price": 180000 
+      }
+    },
+    "maintenance_costs": [
+      { 
+        "task": { 
+          "en": "Oil change", 
+          "hu": "Olajcsere",
+          "de": "Ölwechsel",
+          "ro": "Schimb de ulei",
+          "pl": "Wymiana oleju"
+        }, 
+        "cost": 30000 
+      }
+    ],
+    "owner_reviews": [
+      { 
+        "rating": 4.5, 
+        "review": { 
+          "en": "Reliable car, but maintenance is expensive.", 
+          "hu": "Megbízható autó, de a szerviz drága.",
+          "de": "Zuverlässiges Auto, aber Wartung ist teuer.",
+          "ro": "Mașină fiabilă, dar întreținerea este scumpă.",
+          "pl": "Niezawodny samochód, ale utrzymanie jest drogie."
+        }
+      }
+    ]
+  },
+  {
+    "brand": "BMW",
+    "model": "3-series",
+    "year": 2018,
+    "common_issues": [
+      {
+        "issue": {
+          "en": "Turbo failure",
+          "hu": "Turbó hiba",
+          "de": "Turbolader-Ausfall",
+          "ro": "Defecțiune turbo",
+          "pl": "Awaria turbiny"
+        },
+        "description": {
+          "en": "Electronic control unit failure can cause fluctuating turbo pressure.",
+          "hu": "Az elektronikus vezérlőegység hibája miatt a turbó nyomása ingadozhat.",
+          "de": "Ausfall der elektronischen Steuereinheit kann zu schwankendem Turboladerdruck führen.",
+          "ro": "Defecțiunea unității de control electronic poate provoca fluctuații ale presiunii turbo.",
+          "pl": "Awaria elektronicznej jednostki sterującej może powodować wahania ciśnienia turbiny."
+        },
+        "cost_estimate": { "min": 300000, "max": 700000 }
+      }
+    ],
+    "parts_prices": {
+      "turbocharger": { 
+        "name": { 
+          "en": "Turbocharger", 
+          "hu": "Turbófeltöltő",
+          "de": "Turbolader",
+          "ro": "Turbocompresor",
+          "pl": "Turbosprężarka"
+        }, 
+        "price": 400000 
+      }
+    },
+    "maintenance_costs": [
+      { 
+        "task": { 
+          "en": "Oil change", 
+          "hu": "Olajcsere",
+          "de": "Ölwechsel",
+          "ro": "Schimb de ulei",
+          "pl": "Wymiana oleju"
+        }, 
+        "cost": 35000 
+      }
+    ],
+    "owner_reviews": [
+      { 
+        "rating": 4.8, 
+        "review": { 
+          "en": "Very dynamic, sporty driving experience.", 
+          "hu": "Nagyon dinamikus, sportos vezetési élmény.",
+          "de": "Sehr dynamisches, sportliches Fahrerlebnis.",
+          "ro": "Experiență de condus foarte dinamică și sportivă.",
+          "pl": "Bardzo dynamiczne, sportowe wrażenia z jazdy."
+        }
+      }
+    ]
+  }
+]
