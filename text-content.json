@@ -28,7 +28,11 @@
     "alert_registration_success": "Registration successful! You are now logged in.",
     "alert_logout_success": "You have been logged out.",
     "alert_login_coming_soon": "Login functionality coming soon!",
-    "select_language": "Select Language"
+    "select_language": "Select Language",
+    "search_results_title": "Search Results",
+    "login_title": "Login to MotorWeaver",
+    "alert_login_success": "Login successful! Welcome back.",
+    "alert_login_fail": "Incorrect email or password."
   },
   "hu": {
     "home_link": "Főoldal",
@@ -59,7 +63,11 @@
     "alert_registration_success": "Sikeres regisztráció! Most be vagy jelentkezve.",
     "alert_logout_success": "Kijelentkezett.",
     "alert_login_coming_soon": "A bejelentkezés funkció hamarosan elérhető lesz!",
-    "select_language": "Válassz nyelvet"
+    "select_language": "Válassz nyelvet",
+    "search_results_title": "Keresési találatok",
+    "login_title": "Bejelentkezés a MotorWeaver-re",
+    "alert_login_success": "Sikeres bejelentkezés! Üdvözlünk újra.",
+    "alert_login_fail": "Helytelen email vagy jelszó."
   },
   "de": {
     "home_link": "Startseite",
@@ -90,7 +98,11 @@
     "alert_registration_success": "Registrierung erfolgreich! Sie sind jetzt angemeldet.",
     "alert_logout_success": "Sie wurden abgemeldet.",
     "alert_login_coming_soon": "Die Anmeldefunktion kommt bald!",
-    "select_language": "Sprache auswählen"
+    "select_language": "Sprache auswählen",
+    "search_results_title": "Suchergebnisse",
+    "login_title": "Anmelden bei MotorWeaver",
+    "alert_login_success": "Anmeldung erfolgreich! Willkommen zurück.",
+    "alert_login_fail": "Falsche E-Mail-Adresse oder Passwort."
   },
   "ro": {
     "home_link": "Acasă",
@@ -121,7 +133,11 @@
     "alert_registration_success": "Înregistrare reușită! Acum sunteți autentificat.",
     "alert_logout_success": "Ați fost deconectat.",
     "alert_login_coming_soon": "Funcționalitatea de autentificare va fi disponibilă în curând!",
-    "select_language": "Selectează limba"
+    "select_language": "Selectează limba",
+    "search_results_title": "Rezultate căutare",
+    "login_title": "Autentificare la MotorWeaver",
+    "alert_login_success": "Autentificare reușită! Bine ați revenit.",
+    "alert_login_fail": "Email sau parolă incorectă."
   },
   "pl": {
     "home_link": "Strona główna",
@@ -152,6 +168,10 @@
     "alert_registration_success": "Rejestracja udana! Jesteś teraz zalogowany.",
     "alert_logout_success": "Zostałeś wylogowany.",
     "alert_login_coming_soon": "Funkcjonalność logowania wkrótce dostępna!",
-    "select_language": "Wybierz język"
+    "select_language": "Wybierz język",
+    "search_results_title": "Wyniki wyszukiwania",
+    "login_title": "Zaloguj się do MotorWeaver",
+    "alert_login_success": "Logowanie udane! Witaj ponownie.",
+    "alert_login_fail": "Nieprawidłowy adres e-mail lub hasło."
   }
 }
