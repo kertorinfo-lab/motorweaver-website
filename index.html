@@ -702,7 +702,6 @@
                 return;
             }
             
-            // Display all results, not just the first one
             results.forEach(car => {
                 const contentHTML = `
                     <div class="car-card">
@@ -771,19 +770,33 @@
             }
         });
 
-        // Keresőgomb és Enter eseményfigyelők
+        // Keresés kezelő függvény
+        function handleSearch(query) {
+            if (query.trim().length > 0) {
+                contentSections.forEach(section => section.classList.remove('active'));
+                document.getElementById('search-results-section').classList.add('active');
+                searchCars(query);
+            } else {
+                contentSections.forEach(section => section.classList.remove('active'));
+                document.getElementById('home-section').classList.add('active');
+                searchResultsContainer.innerHTML = ''; 
+            }
+        }
+
+        // Keresőgomb, Enter és gépelés eseményfigyelők
         searchButton.addEventListener('click', () => {
-            searchCars(searchInput.value);
-            document.getElementById('search-results-section').classList.add('active');
-            document.getElementById('home-section').classList.remove('active');
+            handleSearch(searchInput.value);
         });
 
         searchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                searchCars(searchInput.value);
-                document.getElementById('search-results-section').classList.add('active');
-                document.getElementById('home-section').classList.remove('active');
+                e.preventDefault(); 
+                handleSearch(searchInput.value);
             }
+        });
+
+        searchInput.addEventListener('input', () => {
+            handleSearch(searchInput.value);
         });
         
         homeLink.addEventListener('click', () => {
@@ -888,3 +901,4 @@
     </script>
 </body>
 </html>
+
