@@ -170,7 +170,7 @@
 
         /* Hero szekció - autós kép */
         .hero-section {
-            width: 0%;
+            width: 100%;
             height: 400px;
             background-image: url('https://images.unsplash.com/photo-1542362543-0a78601639d6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDIyfHxjYXJ8ZW58MHx8fHwxNjk5MjU0ODgw&ixlib=rb-4.0.3&q=80&q=80&w=1080');
             background-size: cover;
@@ -193,7 +193,7 @@
             font-size: 1.2em;
         }
 
-        /* Kereső és Kategória szekció */
+        /* Kereső szekció */
         .search-section {
             padding: 50px 20px;
             text-align: center;
@@ -238,15 +238,33 @@
         #searchButton:hover {
             background-color: #45a049;
         }
-
+        
         /* Fő tartalom */
-        main {
+        .content-section {
+            display: none; /* Alapból elrejtjük a kategória tartalmakat */
             padding: 20px;
             max-width: 1200px;
             margin: 20px auto;
             background-color: #ffffff;
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .content-section.active {
+            display: block; /* A kiválasztott szekciót megjelenítjük */
+        }
+        
+        .car-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .car-card h3 {
+            margin-top: 0;
+            color: #2c3e50;
         }
 
         /* Modális ablak stílusok */
@@ -424,37 +442,66 @@
             </div>
         </div>
         <nav class="main-nav">
-            <a href="index.html" class="nav-link" id="homeLink" data-key="home_link">Home</a>
-            <a href="issues.html" class="nav-link" id="issuesLink" data-key="issues_title">Common Issues</a>
-            <a href="prices.html" class="nav-link" id="pricesLink" data-key="prices_title">Part Prices</a>
-            <a href="costs.html" class="nav-link" id="costsLink" data-key="costs_title">Maintenance Costs</a>
-            <a href="reviews.html" class="nav-link" id="reviewsLink" data-key="reviews_title">Owner Reviews</a>
+            <a href="#" class="nav-link" data-target="home-section" id="homeLink" data-key="home_link">Home</a>
+            <a href="#" class="nav-link" data-target="issues-section" id="issuesLink" data-key="issues_title">Common Issues</a>
+            <a href="#" class="nav-link" data-target="prices-section" id="pricesLink" data-key="prices_title">Part Prices</a>
+            <a href="#" class="nav-link" data-target="costs-section" id="costsLink" data-key="costs_title">Maintenance Costs</a>
+            <a href="#" class="nav-link" data-target="reviews-section" id="reviewsLink" data-key="reviews_title">Owner Reviews</a>
         </nav>
     </header>
 
-    <div class="hero-section">
-        <h1 data-key="welcome_title">Welcome to MotorWeaver</h1>
-        <p data-key="welcome_text">Your ultimate automotive knowledge hub.</p>
-    </div>
-    
-    <div class="search-section">
-        <div class="search-bar-container">
-            <input type="text" id="searchInput" data-key="placeholder_search" placeholder="Search for car brand or model (e.g., Audi A4)">
-            <button id="searchButton" data-key="search_btn">Search</button>
+    <div class="content-section active" id="home-section">
+        <div class="hero-section">
+            <h1 data-key="welcome_title">Welcome to MotorWeaver</h1>
+            <p data-key="welcome_text">Your ultimate automotive knowledge hub.</p>
         </div>
+        
+        <div class="search-section">
+            <div class="search-bar-container">
+                <input type="text" id="searchInput" data-key="placeholder_search" placeholder="Search for car brand or model (e.g., Audi A4)">
+                <button id="searchButton" data-key="search_btn">Search</button>
+            </div>
+        </div>
+        <main>
+            <h2 data-key="explore_title">Explore a World of Automotive Information</h2>
+            <p data-key="explore_text_p1">
+                Dive deep into detailed type-specific issues, find average part prices,
+                calculate maintenance costs, and read real owner experiences.
+                MotorWeaver is your go-to source for everything automotive.
+            </p>
+            <p data-key="explore_text_p2">
+                Stay tuned as we build the most comprehensive database for car enthusiasts and owners alike.
+            </p>
+        </main>
     </div>
 
-    <main>
-        <h2 data-key="explore_title">Explore a World of Automotive Information</h2>
-        <p data-key="explore_text_p1">
-            Dive deep into detailed type-specific issues, find average part prices,
-            calculate maintenance costs, and read real owner experiences.
-            MotorWeaver is your go-to source for everything automotive.
-        </p>
-        <p data-key="explore_text_p2">
-            Stay tuned as we build the most comprehensive database for car enthusiasts and owners alike.
-        </p>
-    </main>
+    <div class="content-section" id="issues-section">
+        <main>
+            <h2 data-key="issues_title">Common Issues</h2>
+            <p>Itt található a részletes típushibák adatbázisa.</p>
+        </main>
+    </div>
+
+    <div class="content-section" id="prices-section">
+        <main>
+            <h2 data-key="prices_title">Part Prices</h2>
+            <p>Itt található az alkatrész árkalkulátor.</p>
+        </main>
+    </div>
+
+    <div class="content-section" id="costs-section">
+        <main>
+            <h2 data-key="costs_title">Maintenance Costs</h2>
+            <p>Itt található a karbantartási költség kalkulátor.</p>
+        </main>
+    </div>
+
+    <div class="content-section" id="reviews-section">
+        <main>
+            <h2 data-key="reviews_title">Owner Reviews</h2>
+            <p>Itt található a tulajdonosi értékelések adatbázisa.</p>
+        </main>
+    </div>
 
     <div id="registrationModal" class="modal">
         <div class="modal-content">
@@ -501,6 +548,8 @@
         const logoutBtn = document.getElementById("logoutBtn");
         const langDropdown = document.getElementById("langDropdown");
         const currentLangFlag = document.getElementById("currentLangFlag");
+        const navLinks = document.querySelectorAll('.main-nav .nav-link');
+        const contentSections = document.querySelectorAll('.content-section');
 
         let allTranslations;
 
@@ -528,11 +577,13 @@
                 if (currentTranslations[key]) {
                     if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
                         element.setAttribute('placeholder', currentTranslations[key]);
-                    } else if (element.tagName === 'BUTTON') {
+                    } else if (element.tagName === 'BUTTON' && element.id !== 'searchButton') {
                         element.textContent = currentTranslations[key];
                     } else if (element.tagName === 'LABEL' && element.hasAttribute('for')) {
                         element.innerHTML = currentTranslations[key];
-                    } else {
+                    } else if (element.tagName === 'H2' || element.tagName === 'P' || element.tagName === 'H1') {
+                        element.textContent = currentTranslations[key];
+                    } else if (element.tagName === 'A') {
                         element.textContent = currentTranslations[key];
                     }
                 }
@@ -562,6 +613,19 @@
         }
         
         document.addEventListener('DOMContentLoaded', initialize);
+
+        // Kategória váltás logikája
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('data-target');
+
+                contentSections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
 
         // Nyelvválasztó eseményfigyelő
         langDropdown.addEventListener('click', (event) => {
