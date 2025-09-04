@@ -1,35 +1,69 @@
 [
   {
     "brand": "Audi",
+    "model": "A3",
+    "year": 2016,
+    "common_issues": [
+      {
+        "issue": {
+          "en": "S-Tronic mechatronics failure",
+          "hu": "S-Tronic mechatronika hiba"
+        },
+        "description": {
+          "en": "The dual-clutch gearbox can have issues with its electronic control unit, causing jerky shifts.",
+          "hu": "A duplakuplungos váltó elektronikus vezérlőegysége meghibásodhat, ami rángatózó váltásokat okoz."
+        }
+      }
+    ],
+    "parts_prices": {
+      "water_pump": {
+        "name": {
+          "en": "Water pump",
+          "hu": "Vízpumpa"
+        },
+        "price": 85000
+      }
+    },
+    "maintenance_costs": [
+      {
+        "task": {
+          "en": "S-Tronic oil change",
+          "hu": "S-Tronic olajcsere"
+        },
+        "cost": 60000
+      }
+    ],
+    "owner_reviews": [
+      {
+        "rating": 4.2,
+        "review": {
+          "en": "Fun to drive and premium interior, but gearbox repairs can be costly.",
+          "hu": "Élvezetes vezetni és prémium a beltere, de a váltójavítás drága lehet."
+        }
+      }
+    ]
+  },
+  {
+    "brand": "Audi",
     "model": "A4",
     "year": 2015,
     "common_issues": [
       {
         "issue": {
           "en": "Engine control unit failure",
-          "hu": "Motorvezérlő hiba",
-          "de": "Motorsteuergerät-Fehler",
-          "ro": "Eșecul unității de control a motorului",
-          "pl": "Awaria jednostki sterującej silnika"
+          "hu": "Motorvezérlő hiba"
         },
         "description": {
           "en": "Engine control software error can cause jerking and increased fuel consumption.",
-          "hu": "A motorvezérlő szoftveres hibája miatt a motor rángathat és megnőhet a fogyasztás.",
-          "de": "Softwarefehler der Motorsteuerung kann Ruckeln und erhöhten Kraftstoffverbrauch verursachen.",
-          "ro": "Eroarea software-ului de control al motorului poate provoca smucituri și consum crescut de combustibil.",
-          "pl": "Błąd oprogramowania sterującego silnikiem może powodować szarpanie i zwiększone zużycie paliwa."
-        },
-        "cost_estimate": { "min": 50000, "max": 150000 }
+          "hu": "A motorvezérlő szoftveres hibája miatt a motor rángathat és megnőhet a fogyasztás."
+        }
       }
     ],
     "parts_prices": {
       "clutch_kit": {
         "name": {
           "en": "Clutch kit",
-          "hu": "Kuplung szett",
-          "de": "Kupplungssatz",
-          "ro": "Kit ambreiaj",
-          "pl": "Zestaw sprzęgła"
+          "hu": "Kuplung szett"
         },
         "price": 180000
       }
@@ -38,10 +72,7 @@
       {
         "task": {
           "en": "Oil change",
-          "hu": "Olajcsere",
-          "de": "Ölwechsel",
-          "ro": "Schimb de ulei",
-          "pl": "Wymiana oleju"
+          "hu": "Olajcsere"
         },
         "cost": 30000
       }
@@ -51,10 +82,139 @@
         "rating": 4.5,
         "review": {
           "en": "Reliable car, but maintenance is expensive.",
-          "hu": "Megbízható autó, de a szerviz drága.",
-          "de": "Zuverlässiges Auto, aber Wartung ist teuer.",
-          "ro": "Mașină fiabilă, dar întreținerea este scumpă.",
-          "pl": "Niezawodny samochód, ale utrzymanie jest drogie."
+          "hu": "Megbízható autó, de a szerviz drága."
+        }
+      }
+    ]
+  },
+    {
+    "brand": "Audi",
+    "model": "A6",
+    "year": 2014,
+    "common_issues": [
+      {
+        "issue": {
+          "en": "Air suspension leak",
+          "hu": "Légrugó szivárgás"
+        },
+        "description": {
+          "en": "The air suspension system can develop leaks, causing the car to sag on one corner.",
+          "hu": "A légrugórendszer szivároghat, aminek következtében az autó egyik sarka megsüllyed."
+        }
+      }
+    ],
+    "parts_prices": {
+      "timing_chain_kit": {
+        "name": {
+          "en": "Timing chain kit",
+          "hu": "Vezérlés szett"
+        },
+        "price": 280000
+      }
+    },
+    "maintenance_costs": [
+      {
+        "task": {
+          "en": "Brake fluid change",
+          "hu": "Fékfolyadék csere"
+        },
+        "cost": 20000
+      }
+    ],
+    "owner_reviews": [
+      {
+        "rating": 4.6,
+        "review": {
+          "en": "Incredibly comfortable for long distances. A true autobahn cruiser.",
+          "hu": "Hihetetlenül kényelmes hosszú távon. Egy igazi autópálya-cirkáló."
+        }
+      }
+    ]
+  },
+  {
+    "brand": "Audi",
+    "model": "Q5",
+    "year": 2013,
+    "common_issues": [
+      {
+        "issue": {
+          "en": "Excessive oil consumption",
+          "hu": "Túlzott olajfogyasztás"
+        },
+        "description": {
+          "en": "The 2.0 TFSI engines are known for consuming a lot of oil due to piston ring design.",
+          "hu": "A 2.0 TFSI motorok a dugattyúgyűrűk kialakítása miatt sok olajat fogyaszthatnak."
+        }
+      }
+    ],
+    "parts_prices": {
+      "front_brakes": {
+        "name": {
+          "en": "Front brake discs and pads",
+          "hu": "Első féktárcsák és betétek"
+        },
+        "price": 120000
+      }
+    },
+    "maintenance_costs": [
+      {
+        "task": {
+          "en": "Pollen filter replacement",
+          "hu": "Pollenszűrő csere"
+        },
+        "cost": 12000
+      }
+    ],
+    "owner_reviews": [
+      {
+        "rating": 4.0,
+        "review": {
+          "en": "Great family SUV, but keep an eye on the oil level.",
+          "hu": "Nagyszerű családi SUV, de az olajszintet figyelni kell."
+        }
+      }
+    ]
+  },
+  {
+    "brand": "Audi",
+    "model": "Q7",
+    "year": 2012,
+    "common_issues": [
+      {
+        "issue": {
+          "en": "MMI system freezing",
+          "hu": "MMI rendszer lefagyása"
+        },
+        "description": {
+          "en": "The infotainment system can become unresponsive and may require a software update or reboot.",
+          "hu": "Az infotainment rendszer lefagyhat, ami szoftverfrissítést vagy újraindítást igényelhet."
+        }
+      }
+    ],
+    "parts_prices": {
+      "air_compressor": {
+        "name": {
+          "en": "Air suspension compressor",
+          "hu": "Légrugó kompresszor"
+        },
+        "price": 200000
+      }
+    },
+    "maintenance_costs": [
+      {
+        "task": {
+          "en": "Differential fluid change",
+          "hu": "Differenciálmű olajcsere"
+        },
+        "cost": 25000
+      }
+    ],
+    "owner_reviews": [
+      {
+        "rating": 4.3,
+        "review": {
+          "en": "A very safe and spacious car, but parts are expensive.",
+          "hu": "Nagyon biztonságos és tágas autó, de az alkatrészek drágák."
         }
       }
     ]
@@ -67,29 +227,19 @@
       {
         "issue": {
           "en": "Turbo failure",
-          "hu": "Turbó hiba",
-          "de": "Turbolader-Ausfall",
-          "ro": "Defecțiune turbo",
-          "pl": "Awaria turbiny"
+          "hu": "Turbó hiba"
         },
         "description": {
           "en": "Electronic control unit failure can cause fluctuating turbo pressure.",
-          "hu": "Az elektronikus vezérlőegység hibája miatt a turbó nyomása ingadozhat.",
-          "de": "Ausfall der elektronischen Steuereinheit kann zu schwankendem Turboladerdruck führen.",
-          "ro": "Defecțiunea unității de control electronic poate provoca fluctuații ale presiunii turbo.",
-          "pl": "Awaria elektronicznej jednostki sterującej może powodować wahania ciśnienia turbiny."
-        },
-        "cost_estimate": { "min": 300000, "max": 700000 }
+          "hu": "Az elektronikus vezérlőegység hibája miatt a turbó nyomása ingadozhat."
+        }
       }
     ],
     "parts_prices": {
       "turbocharger": {
         "name": {
           "en": "Turbocharger",
-          "hu": "Turbófeltöltő",
-          "de": "Turbolader",
-          "ro": "Turbocompresor",
-          "pl": "Turbosprężarka"
+          "hu": "Turbófeltöltő"
         },
         "price": 400000
       }
@@ -98,10 +248,7 @@
       {
         "task": {
           "en": "Oil change",
-          "hu": "Olajcsere",
-          "de": "Ölwechsel",
-          "ro": "Schimb de ulei",
-          "pl": "Wymiana oleoju"
+          "hu": "Olajcsere"
         },
         "cost": 35000
       }
@@ -111,12 +258,10 @@
         "rating": 4.8,
         "review": {
           "en": "Very dynamic, sporty driving experience.",
-          "hu": "Nagyon dinamikus, sportos vezetési élmény.",
-          "de": "Sehr dynamisches, sportliches Fahrerlebnis.",
-          "ro": "Experiență de condus foarte dinamică și sportivă.",
-          "pl": "Bardzo dynamiczne, sportowe wrażenia z jazdy."
+          "hu": "Nagyon dinamikus, sportos vezetési élmény."
         }
       }
     ]
   }
 ]
+
