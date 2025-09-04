@@ -463,7 +463,7 @@
         const languageFlags = { 'en': '🇬🇧', 'hu': '🇭🇺', 'de': '🇩🇪', 'ro': '🇷🇴', 'pl': '🇵🇱' };
 
         // Functions
-        async function setLanguage(langCode) {
+        function setLanguage(langCode) {
             if (!langCode || !allTranslations) return;
             
             localStorage.setItem('userLanguage', langCode);
@@ -488,19 +488,20 @@
             window.loginFailAlert = currentTranslations.alert_login_fail;
         }
 
-        async function loadData() {
-            try {
-                const [textResponse, carsResponse] = await Promise.all([
-                    fetch('text-content.json'),
-                    fetch('cars.json')
-                ]);
-                allTranslations = await textResponse.json();
-                allCarsData = await carsResponse.json();
+        function loadData() {
+             try {
+                // Adatok beágyazása a fetch helyett
+                allTranslations = {
+                    "en": { "welcome_title": "Welcome to MotorWeaver", "welcome_text": "Your ultimate automotive knowledge hub.", "placeholder_search": "Search for car brand or model (e.g., Audi A4)", "login_btn": "Login", "signup_btn": "Sign Up", "logout_btn": "Logout", "issues_title": "Common Issues", "prices_title": "Part Prices", "costs_title": "Maintenance Costs", "reviews_title": "Owner Reviews", "search_results_title": "Search Results", "signup_title": "Create Account", "fullName_label": "Full Name", "email_label": "Email", "password_label": "Password", "confirmPassword_label": "Confirm Password", "terms_label": "I agree to the <a href='#'>Terms</a>.", "register_btn": "Register", "login_title": "Login", "no_results_found": "No results found.", "cost_low": "Low", "cost_medium": "Medium", "cost_high": "High", "alert_password_mismatch": "Passwords do not match.", "alert_terms_unaccepted": "You must accept the terms.", "alert_registration_success": "Registration successful!", "alert_logout_success": "Logged out successfully.", "alert_login_success": "Login successful!", "alert_login_fail": "Invalid email or password." },
+                    "hu": { "welcome_title": "Üdv a MotorWeaver-nél", "welcome_text": "A te autós tudásbázisod.", "placeholder_search": "Keress autómárkára vagy modellre (pl. Audi A4)", "login_btn": "Belépés", "signup_btn": "Regisztráció", "logout_btn": "Kilépés", "issues_title": "Típushibák", "prices_title": "Alkatrész árak", "costs_title": "Karbantartási költségek", "reviews_title": "Tulajdonosi vélemények", "search_results_title": "Keresési Eredmények", "signup_title": "Fiók létrehozása", "fullName_label": "Teljes név", "email_label": "Email cím", "password_label": "Jelszó", "confirmPassword_label": "Jelszó megerősítése", "terms_label": "Elfogadom a <a href='#'>feltételeket</a>.", "register_btn": "Regisztráció", "login_title": "Bejelentkezés", "no_results_found": "Nincs találat.", "cost_low": "Alacsony", "cost_medium": "Közepes", "cost_high": "Magas", "alert_password_mismatch": "A jelszavak nem egyeznek.", "alert_terms_unaccepted": "El kell fogadnod a feltételeket.", "alert_registration_success": "Sikeres regisztráció!", "alert_logout_success": "Sikeresen kijelentkezve.", "alert_login_success": "Sikeres bejelentkezés!", "alert_login_fail": "Hibás email vagy jelszó." }
+                };
+                allCarsData = [ { "brand": "Audi", "model": "A4", "year": 2015, "common_issues": [ { "issue": { "en": "Engine control unit failure", "hu": "Motorvezérlő hiba" }, "description": { "en": "Engine control software error can cause jerking and increased fuel consumption.", "hu": "A motorvezérlő szoftveres hibája miatt a motor rángathat és megnőhet a fogyasztás." } } ], "parts_prices": { "clutch_kit": { "name": { "en": "Clutch kit", "hu": "Kuplung szett" }, "price": 180000 } }, "maintenance_costs": [ { "task": { "en": "Oil change", "hu": "Olajcsere" }, "cost": 30000 } ], "owner_reviews": [ { "rating": 4.5, "review": { "en": "Reliable car, but maintenance is expensive.", "hu": "Megbízható autó, de a szerviz drága." } } ] }, { "brand": "BMW", "model": "3-series", "year": 2018, "common_issues": [ { "issue": { "en": "Turbo failure", "hu": "Turbó hiba" }, "description": { "en": "Electronic control unit failure can cause fluctuating turbo pressure.", "hu": "Az elektronikus vezérlőegység hibája miatt a turbó nyomása ingadozhat." } } ], "parts_prices": { "turbocharger": { "name": { "en": "Turbocharger", "hu": "Turbófeltöltő" }, "price": 400000 } }, "maintenance_costs": [ { "task": { "en": "Oil change", "hu": "Olajcsere" }, "cost": 35000 } ], "owner_reviews": [ { "rating": 4.8, "review": { "en": "Very dynamic, sporty driving experience.", "hu": "Nagyon dinamikus, sportos vezetési élmény." } } ] } ];
+                
                 const savedLanguage = localStorage.getItem('userLanguage') || 'en';
-                await setLanguage(savedLanguage);
+                setLanguage(savedLanguage);
                 checkLoginStatus();
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.error('Hiba az adatok betöltésekor:', error);
             }
         }
         
