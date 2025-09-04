@@ -63,7 +63,7 @@
             gap: 20px;
         }
 
-        .nav-buttons button, .garage-button {
+        .nav-buttons button {
             background-color: #f0f0f0;
             color: var(--text-dark);
             border: none;
@@ -74,7 +74,7 @@
             transition: background-color 0.3s ease;
         }
 
-        .nav-buttons button:hover, .garage-button:hover {
+        .nav-buttons button:hover {
             background-color: #e0e0e0;
         }
 
@@ -342,104 +342,23 @@
         /* Modális ablak stílusok */
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); backdrop-filter: blur(5px); justify-content: center; align-items: center; }
         .modal-content { background-color: #fefefe; margin: auto; padding: 30px; border-radius: 10px; width: 90%; max-width: 500px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: animatetop 0.4s; }
-        .modal-content.modal-lg { max-width: 900px; }
         .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 10px; right: 20px; cursor: pointer; }
         .close-button:hover, .close-button:focus { color: #333; }
         .modal h2 { margin-top: 0; color: #2c3e50; text-align: center; }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
-        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1em; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 1em; }
         .form-checkbox { display: flex; align-items: center; gap: 10px; }
         .form-checkbox input[type="checkbox"] { width: auto; }
         .form-checkbox a { color: var(--primary-color); text-decoration: none; }
-        .register-button, .action-button { width: 100%; background-color: var(--primary-color); color: white; padding: 15px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s ease; margin-top: 10px; }
-        .register-button:hover, .action-button:hover { background-color: var(--primary-dark); }
+        .register-button { width: 100%; background-color: var(--primary-color); color: white; padding: 15px; border: none; border-radius: 5px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s ease; margin-top: 10px; }
+        .register-button:hover { background-color: var(--primary-dark); }
         @keyframes animatetop { from { transform: translateY(-100px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
-        
-        /* Interaktív elemek */
-        .card-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-        }
-        .add-to-garage-btn {
-            background-color: var(--strong-blue);
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .add-to-garage-btn.in-garage {
-            background-color: #ccc;
-            color: #333;
-        }
-        .compare-checkbox-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-        }
-
-        /* Összehasonlítás */
-        #compare-bar {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--medium-bg);
-            color: white;
-            padding: 15px 30px;
-            border-radius: 10px 10px 0 0;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-            transition: bottom 0.3s ease-in-out;
-            z-index: 999;
-        }
-        #compare-bar.visible {
-            bottom: 0;
-        }
-        #compareBtn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            margin-left: 20px;
-            cursor: pointer;
-        }
-        #compareBtn:disabled {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        .comparison-container {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-        }
-        .comparison-col {
-            width: 48%;
-        }
-
-        /* Felhasználói értékelések */
-        .user-review {
-            border-top: 1px dashed #ccc;
-            margin-top: 15px;
-            padding-top: 15px;
-        }
-        .user-review strong {
-            display: block;
-            margin-bottom: 5px;
-        }
-
 
         /* Reszponzív design */
         @media (max-width: 768px) {
             .header-top { flex-direction: column; padding: 15px 20px; }
             .header-right { flex-direction: column; margin-top: 15px; gap: 10px; }
-            .comparison-container { flex-direction: column; }
-            .comparison-col { width: 100%; }
         }
     </style>
 </head>
@@ -466,7 +385,6 @@
                     <button id="signupBtn" data-key="signup_btn">Sign Up</button>
                 </div>
                 <div class="profile-container" id="profileContainer">
-                    <button class="garage-button" id="garageBtn" data-key="my_garage_btn">My Garage</button>
                     <div class="profile-picture" id="profilePic"><span>👤</span></div>
                     <button class="logout-button" id="logoutBtn" data-key="logout_btn">Logout</button>
                 </div>
@@ -494,7 +412,6 @@
         </main>
     </div>
 
-    <!-- Modals -->
     <div id="registrationModal" class="modal">
         <div class="modal-content">
             <span class="close-button" id="registrationCloseBtn">&times;</span>
@@ -522,50 +439,37 @@
         </div>
     </div>
 
-    <div id="garageModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="garageCloseBtn">&times;</span>
-            <h2 data-key="my_garage_btn">My Garage</h2>
-            <div id="garageContent"></div>
-        </div>
-    </div>
-
-    <div id="comparisonModal" class="modal">
-        <div class="modal-content modal-lg">
-            <span class="close-button" id="comparisonCloseBtn">&times;</span>
-            <h2 data-key="compare_title">Car Comparison</h2>
-            <div id="comparisonContent" class="comparison-container"></div>
-        </div>
-    </div>
-
-    <!-- Floating Compare Bar -->
-    <div id="compare-bar">
-        <span id="compare-count"></span>
-        <button id="compareBtn" data-key="compare_btn" disabled>Compare</button>
-    </div>
-
     <script>
         // DOM Elements
-        const registrationModal = document.getElementById("registrationModal"), loginModal = document.getElementById("loginModal"), garageModal = document.getElementById("garageModal"), comparisonModal = document.getElementById("comparisonModal");
-        const signupBtn = document.getElementById("signupBtn"), loginBtn = document.getElementById("loginBtn"), garageBtn = document.getElementById("garageBtn"), compareBtn = document.getElementById("compareBtn");
-        const registrationCloseBtn = document.getElementById("registrationCloseBtn"), loginCloseBtn = document.getElementById("loginCloseBtn"), garageCloseBtn = document.getElementById("garageCloseBtn"), comparisonCloseBtn = document.getElementById("comparisonCloseBtn");
-        const authButtons = document.getElementById("authButtons"), profileContainer = document.getElementById("profileContainer"), logoutBtn = document.getElementById("logoutBtn");
-        const langDropdown = document.getElementById("langDropdown"), currentLangFlag = document.getElementById("currentLangFlag");
-        const searchInput = document.getElementById("searchInput"), searchSuggestions = document.getElementById("searchSuggestions"), searchResultsContainer = document.getElementById("searchResultsContainer"), searchResultsSection = document.getElementById("search-results-section");
-        const garageContent = document.getElementById("garageContent"), comparisonContent = document.getElementById("comparisonContent");
-        const compareBar = document.getElementById("compare-bar"), compareCount = document.getElementById("compare-count");
-        
-        let allTranslations, allCarsData;
-        let garage = [], comparisonList = [], userReviews = {};
+        const registrationModal = document.getElementById("registrationModal");
+        const loginModal = document.getElementById("loginModal");
+        const signupBtn = document.getElementById("signupBtn");
+        const loginBtn = document.getElementById("loginBtn");
+        const registrationCloseBtn = document.getElementById("registrationCloseBtn");
+        const loginCloseBtn = document.getElementById("loginCloseBtn");
+        const authButtons = document.getElementById("authButtons");
+        const profileContainer = document.getElementById("profileContainer");
+        const logoutBtn = document.getElementById("logoutBtn");
+        const langDropdown = document.getElementById("langDropdown");
+        const currentLangFlag = document.getElementById("currentLangFlag");
+        const searchInput = document.getElementById("searchInput");
+        const searchSuggestions = document.getElementById("searchSuggestions");
+        const searchResultsContainer = document.getElementById("searchResultsContainer");
+        const searchResultsSection = document.getElementById("search-results-section");
+
+        let allTranslations;
+        let allCarsData;
 
         const languageFlags = { 'en': '🇬🇧', 'hu': '🇭🇺', 'de': '🇩🇪', 'ro': '🇷🇴', 'pl': '🇵🇱' };
 
         // Functions
         async function setLanguage(langCode) {
             if (!langCode || !allTranslations) return;
+            
             localStorage.setItem('userLanguage', langCode);
             currentLangFlag.textContent = languageFlags[langCode];
             const currentTranslations = allTranslations[langCode];
+            
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
                 if (currentTranslations[key]) {
@@ -574,183 +478,214 @@
                     else el.textContent = currentTranslations[key];
                 }
             });
+            
             document.title = `MotorWeaver - ${currentTranslations.welcome_text}`;
-            Object.assign(window, {
-                passwordMismatchAlert: currentTranslations.alert_password_mismatch,
-                termsUnacceptedAlert: currentTranslations.alert_terms_unaccepted,
-                registrationSuccessAlert: currentTranslations.alert_registration_success,
-                logoutSuccessAlert: currentTranslations.alert_logout_success,
-                loginSuccessAlert: currentTranslations.alert_login_success,
-                loginFailAlert: currentTranslations.alert_login_fail
-            });
+            window.passwordMismatchAlert = currentTranslations.alert_password_mismatch;
+            window.termsUnacceptedAlert = currentTranslations.alert_terms_unaccepted;
+            window.registrationSuccessAlert = currentTranslations.alert_registration_success;
+            window.logoutSuccessAlert = currentTranslations.alert_logout_success;
+            window.loginSuccessAlert = currentTranslations.alert_login_success;
+            window.loginFailAlert = currentTranslations.alert_login_fail;
         }
 
         async function loadData() {
             try {
-                const [textResponse, carsResponse] = await Promise.all([ fetch('text-content.json'), fetch('cars.json') ]);
+                const [textResponse, carsResponse] = await Promise.all([
+                    fetch('text-content.json'),
+                    fetch('cars.json')
+                ]);
                 allTranslations = await textResponse.json();
                 allCarsData = await carsResponse.json();
-                allCarsData.forEach(car => car.id = `${car.brand}-${car.model}-${car.year}`.toLowerCase());
-                
-                garage = JSON.parse(localStorage.getItem('motorweaver_garage')) || [];
-                userReviews = JSON.parse(localStorage.getItem('motorweaver_reviews')) || {};
-                
-                await setLanguage(localStorage.getItem('userLanguage') || 'en');
+                const savedLanguage = localStorage.getItem('userLanguage') || 'en';
+                await setLanguage(savedLanguage);
                 checkLoginStatus();
-            } catch (error) { console.error('Error loading data:', error); }
+            } catch (error) {
+                console.error('Error loading data:', error);
+            }
         }
         
-        const getIconForItem = (name, lang) => {
-            const lower = name[lang]?.toLowerCase() || '';
-            if (lower.includes('kuplung') || lower.includes('clutch')) return '⚙️';
-            if (lower.includes('turbó') || lower.includes('turbo')) return '🛢️';
-            if (lower.includes('olaj') || lower.includes('oil')) return '💧';
-            if (lower.includes('motor') || lower.includes('engine')) return '🔩';
+        function getIconForItem(name, lang) {
+            const lowerCaseName = name[lang]?.toLowerCase() || '';
+            if (lowerCaseName.includes('kuplung') || lowerCaseName.includes('clutch')) return '⚙️';
+            if (lowerCaseName.includes('turbó') || lowerCaseName.includes('turbo')) return '🛢️';
+            if (lowerCaseName.includes('olaj') || lowerCaseName.includes('oil')) return '💧';
+            if (lowerCaseName.includes('motor') || lowerCaseName.includes('engine')) return '🔩';
             return '🔧';
-        };
+        }
 
-        const calculateMaintenanceScale = (costs, lang) => {
-            const total = costs.reduce((s, i) => s + i.cost, 0);
-            if (total <= 50000) return { p: 33, c: '#28a745', l: allTranslations[lang].cost_low };
-            if (total <= 150000) return { p: 66, c: '#ffc107', l: allTranslations[lang].cost_medium };
-            return { p: 100, c: '#dc3545', l: allTranslations[lang].cost_high };
-        };
-
+        function calculateMaintenanceScale(costs, lang) {
+            const totalCost = costs.reduce((sum, item) => sum + item.cost, 0);
+            const lowThreshold = 50000;
+            const highThreshold = 150000;
+            
+            if (totalCost <= lowThreshold) {
+                return { percentage: 33, color: '#28a745', label: allTranslations[lang].cost_low || 'Low' };
+            } else if (totalCost <= highThreshold) {
+                return { percentage: 66, color: '#ffc107', label: allTranslations[lang].cost_medium || 'Medium' };
+            } else {
+                return { percentage: 100, color: '#dc3545', label: allTranslations[lang].cost_high || 'High' };
+            }
+        }
+        
         function displayResultsInPanel(results, lang) {
             searchResultsContainer.innerHTML = '';
+            
             if (!results || results.length === 0) {
-                searchResultsContainer.innerHTML = `<p style="text-align: center; width: 100%;">${allTranslations[lang].no_results_found}</p>`;
-                return;
+                searchResultsContainer.innerHTML = `<p style="text-align: center; width: 100%;">${allTranslations[lang].no_results_found || 'No results found.'}</p>`;
+            } else {
+                results.forEach(car => {
+                    const scale = calculateMaintenanceScale(car.maintenance_costs, lang);
+                    const carImageText = `${car.brand}+${car.model}+${car.year}`;
+                    const carImageUrl = `https://placehold.co/600x400/e0e4e8/333?text=${carImageText}`;
+
+                    const contentHTML = `
+                        <div class="car-result-card">
+                            <img class="car-image" src="${carImageUrl}" alt="${car.brand} ${car.model}">
+                            <h3>${car.brand} ${car.model} (${car.year})</h3>
+                            
+                            <div class="card-section">
+                                <h4>${allTranslations[lang].issues_title}</h4>
+                                <ul>${car.common_issues.map(i => `<li><span class="icon">${getIconForItem(i.issue, lang)}</span><div><strong>${i.issue[lang]}:</strong> ${i.description[lang]}</div></li>`).join('')}</ul>
+                            </div>
+                            
+                            <div class="card-section">
+                                <h4>${allTranslations[lang].prices_title}</h4>
+                                <ul>${Object.values(car.parts_prices).map(p => `<li><span class="icon">${getIconForItem(p.name, lang)}</span><div><strong>${p.name[lang]}:</strong> ${p.price} Ft</div></li>`).join('')}</ul>
+                            </div>
+                            
+                            <div class="card-section">
+                                <h4>${allTranslations[lang].costs_title}</h4>
+                                <div class="cost-scale-container">
+                                    <div class="cost-scale-bar">
+                                        <div class="cost-scale-bar-inner" style="width: ${scale.percentage}%; background-color: ${scale.color};"></div>
+                                    </div>
+                                    <div class="cost-scale-label" style="color: ${scale.color}">${scale.label}</div>
+                                </div>
+                            </div>
+
+                            <div class="card-section">
+                                <h4>${allTranslations[lang].reviews_title} ⭐</h4>
+                                <ul>${car.owner_reviews.map(r => `<li><div><strong>Rating:</strong> ${r.rating} / 5 <br><strong>Review:</strong> ${r.review[lang]}</div></li>`).join('')}</ul>
+                            </div>
+                        </div>
+                    `;
+                    searchResultsContainer.innerHTML += contentHTML;
+                });
             }
-            results.forEach(car => {
-                const scale = calculateMaintenanceScale(car.maintenance_costs, lang);
-                const carImageText = `${car.brand}+${car.model}+${car.year}`;
-                const carImageUrl = `https://placehold.co/600x400/e0e4e8/333?text=${carImageText}`;
-                const isInGarage = garage.includes(car.id);
-                
-                const card = document.createElement('div');
-                card.className = 'car-result-card';
-                card.innerHTML = `
-                    <img class="car-image" src="${carImageUrl}" alt="${car.brand} ${car.model}">
-                    <h3>${car.brand} ${car.model} (${car.year})</h3>
-                    <div class="card-section"><h4>${allTranslations[lang].issues_title}</h4><ul>${car.common_issues.map(i => `<li><span class="icon">${getIconForItem(i.issue, lang)}</span><div><strong>${i.issue[lang]}:</strong> ${i.description[lang]}</div></li>`).join('')}</ul></div>
-                    <div class="card-section"><h4>${allTranslations[lang].prices_title}</h4><ul>${Object.values(car.parts_prices).map(p => `<li><span class="icon">${getIconForItem(p.name, lang)}</span><div><strong>${p.name[lang]}:</strong> ${p.price} Ft</div></li>`).join('')}</ul></div>
-                    <div class="card-section"><h4>${allTranslations[lang].costs_title}</h4><div class="cost-scale-container"><div class="cost-scale-bar"><div class="cost-scale-bar-inner" style="width:${scale.p}%;background-color:${scale.c};"></div></div><div class="cost-scale-label" style="color:${scale.c}">${scale.l}</div></div></div>
-                    <div class="card-section"><h4>${allTranslations[lang].reviews_title} ⭐</h4><ul>${car.owner_reviews.map(r => `<li><div><strong>Rating:</strong> ${r.rating}/5<br><strong>Review:</strong> ${r.review[lang]}</div></li>`).join('')}</ul><div class="user-reviews-list"></div></div>
-                    <div class="card-section user-review-form-container" style.display="${localStorage.getItem('isLoggedIn') === 'true' ? 'block' : 'none'}">
-                        <h4>${allTranslations[lang].add_review_title}</h4>
-                        <form class="review-form">
-                            <div class="form-group"><textarea name="review_text" required placeholder="${allTranslations[lang].review_placeholder}"></textarea></div>
-                            <button type="submit" class="action-button">${allTranslations[lang].submit_review_btn}</button>
-                        </form>
-                    </div>
-                    <div class="card-actions">
-                        <button class="add-to-garage-btn ${isInGarage ? 'in-garage' : ''}">${isInGarage ? allTranslations[lang].in_garage_btn : allTranslations[lang].add_to_garage_btn}</button>
-                        <label class="compare-checkbox-label"><input type="checkbox" class="compare-checkbox" ${comparisonList.includes(car.id) ? 'checked' : ''}> ${allTranslations[lang].compare_label}</label>
-                    </div>
-                `;
-                searchResultsContainer.appendChild(card);
-                
-                // Event Listeners for the card
-                card.querySelector('.add-to-garage-btn').addEventListener('click', (e) => toggleGarage(car.id, e.target));
-                card.querySelector('.compare-checkbox').addEventListener('change', (e) => toggleCompare(car.id, e.target.checked));
-                const reviewForm = card.querySelector('.review-form');
-                if (reviewForm) {
-                    reviewForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                        const text = e.target.review_text.value;
-                        addUserReview(car.id, text);
-                        e.target.reset();
-                        displayUserReviews(car.id, card.querySelector('.user-reviews-list'), lang);
-                    });
-                }
-                displayUserReviews(car.id, card.querySelector('.user-reviews-list'), lang);
-            });
             searchResultsSection.style.display = 'block';
         }
 
-        function showSuggestions(query) { /* ... same as before ... */ }
+        function showSuggestions(query) {
+            searchSuggestions.innerHTML = '';
+            if (query.length === 0) {
+                searchSuggestions.style.display = 'none';
+                searchResultsSection.style.display = 'none';
+                return;
+            }
+
+            const lowerCaseQuery = query.toLowerCase();
+            const results = allCarsData.filter(car => 
+                `${car.brand.toLowerCase()} ${car.model.toLowerCase()}`.includes(lowerCaseQuery)
+            );
+
+            if (results.length > 0) {
+                results.forEach(car => {
+                    const item = document.createElement('div');
+                    item.className = 'suggestion-item';
+                    item.textContent = `${car.brand} ${car.model}`;
+                    item.onclick = () => {
+                        searchInput.value = item.textContent;
+                        searchSuggestions.style.display = 'none';
+                        const currentLang = localStorage.getItem('userLanguage') || 'en';
+                        displayResultsInPanel([car], currentLang);
+                    };
+                    searchSuggestions.appendChild(item);
+                });
+                searchSuggestions.style.display = 'block';
+            } else {
+                searchSuggestions.style.display = 'none';
+            }
+        }
         
         function checkLoginStatus() {
             const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
             authButtons.style.display = isLoggedIn ? "none" : "flex";
             profileContainer.style.display = isLoggedIn ? "flex" : "none";
-            document.querySelectorAll('.user-review-form-container').forEach(el => el.style.display = isLoggedIn ? 'block' : 'none');
-        }
-
-        function toggleGarage(carId, button) {
-            if (garage.includes(carId)) garage = garage.filter(id => id !== carId);
-            else garage.push(carId);
-            localStorage.setItem('motorweaver_garage', JSON.stringify(garage));
-            const lang = localStorage.getItem('userLanguage') || 'en';
-            button.textContent = garage.includes(carId) ? allTranslations[lang].in_garage_btn : allTranslations[lang].add_to_garage_btn;
-            button.classList.toggle('in-garage');
-        }
-
-        function displayGarage() {
-            const lang = localStorage.getItem('userLanguage') || 'en';
-            if (garage.length === 0) {
-                garageContent.innerHTML = `<p>${allTranslations[lang].garage_empty}</p>`;
-            } else {
-                garageContent.innerHTML = garage.map(id => {
-                    const car = allCarsData.find(c => c.id === id);
-                    return car ? `<p>${car.brand} ${car.model}</p>` : '';
-                }).join('');
-            }
-            garageModal.style.display = 'flex';
-        }
-
-        function toggleCompare(carId, isChecked) {
-            comparisonList = comparisonList.filter(id => id !== carId);
-            if (isChecked) comparisonList.push(carId);
-            if (comparisonList.length > 2) {
-                const oldest = comparisonList.shift();
-                document.querySelector(`.compare-checkbox[data-id="${oldest}"]`).checked = false;
-            }
-            
-            compareCount.textContent = `${comparisonList.length} ${allTranslations[localStorage.getItem('userLanguage') || 'en'].items_selected}`;
-            compareBar.classList.toggle('visible', comparisonList.length > 0);
-            compareBtn.disabled = comparisonList.length !== 2;
-        }
-
-        function displayComparison() { /* ... detailed implementation needed ... */ }
-
-        function addUserReview(carId, text) {
-            if (!userReviews[carId]) userReviews[carId] = [];
-            userReviews[carId].push({ text, user: localStorage.getItem('userEmail') || 'Anonymous' });
-            localStorage.setItem('motorweaver_reviews', JSON.stringify(userReviews));
-        }
-
-        function displayUserReviews(carId, container, lang) {
-            container.innerHTML = '';
-            const reviews = userReviews[carId] || [];
-            if (reviews.length > 0) {
-                reviews.forEach(review => {
-                    const reviewEl = document.createElement('div');
-                    reviewEl.className = 'user-review';
-                    reviewEl.innerHTML = `<strong>${review.user}</strong><p>${review.text}</p>`;
-                    container.appendChild(reviewEl);
-                });
-            }
         }
         
         // Event Listeners
         searchInput.addEventListener('input', () => showSuggestions(searchInput.value));
-        document.addEventListener('DOMContentLoaded', loadData);
-        garageBtn.onclick = displayGarage;
-
-        // Modal close buttons
-        [registrationCloseBtn, loginCloseBtn, garageCloseBtn, comparisonCloseBtn].forEach(btn => {
-            btn.onclick = () => btn.closest('.modal').style.display = 'none';
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const currentLang = localStorage.getItem('userLanguage') || 'en';
+                const results = allCarsData.filter(car => 
+                    `${car.brand.toLowerCase()} ${car.model.toLowerCase()}`.includes(searchInput.value.toLowerCase())
+                );
+                displayResultsInPanel(results, currentLang);
+                searchSuggestions.style.display = 'none';
+            }
         });
 
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-bar-container')) {
+                searchSuggestions.style.display = 'none';
+            }
+        });
+
+        langDropdown.addEventListener('click', (e) => {
+            if (e.target.classList.contains('lang-option')) {
+                setLanguage(e.target.getAttribute('data-lang'));
+                e.preventDefault();
+            }
+        });
+
+        signupBtn.onclick = () => { registrationModal.style.display = "flex"; }
+        loginBtn.onclick = () => { loginModal.style.display = "flex"; }
+        registrationCloseBtn.onclick = () => { registrationModal.style.display = "none"; }
+        loginCloseBtn.onclick = () => { loginModal.style.display = "none"; }
         window.onclick = (e) => {
-            if (e.target.classList.contains('modal')) e.target.style.display = "none";
-        };
+            if (e.target == registrationModal) registrationModal.style.display = "none";
+            if (e.target == loginModal) loginModal.style.display = "none";
+        }
         
-        // Auth forms and logout
-        /* ... same as before ... */
-        
+        document.getElementById("registrationForm").addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pass = document.getElementById("password").value;
+            const confirmPass = document.getElementById("confirmPassword").value;
+            if (pass !== confirmPass) { alert(window.passwordMismatchAlert); return; }
+            if (!document.getElementById("terms").checked) { alert(window.termsUnacceptedAlert); return; }
+
+            localStorage.setItem('userEmail', document.getElementById("email").value);
+            localStorage.setItem('userPassword', pass);
+            localStorage.setItem('isLoggedIn', 'true');
+            alert(window.registrationSuccessAlert);
+            registrationModal.style.display = "none";
+            checkLoginStatus();
+        });
+
+        document.getElementById("loginForm").addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const pass = document.getElementById("loginPassword").value;
+            if (email === localStorage.getItem('userEmail') && pass === localStorage.getItem('userPassword')) {
+                localStorage.setItem('isLoggedIn', 'true');
+                alert(window.loginSuccessAlert);
+                loginModal.style.display = "none";
+                checkLoginStatus();
+            } else {
+                alert(window.loginFailAlert);
+            }
+        });
+
+        logoutBtn.onclick = () => {
+            alert(window.logoutSuccessAlert);
+            localStorage.clear();
+            checkLoginStatus();
+        }
+    
+        // Initialize
+        document.addEventListener('DOMContentLoaded', loadData);
     </script>
 </body>
 </html>
